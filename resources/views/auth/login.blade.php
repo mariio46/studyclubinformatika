@@ -1,9 +1,8 @@
 <x-guest-layout>
     <x-slot:header>
-        {{-- <x-application-logo class="w-[10rem] h-[10rem] fill-current text-gray-500" /> --}}
-        <h1 class="mt-10 uppercase text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">
-            <a href="{{ route('home') }}">study club <span class="text-primary">informatika</span></a>
-        </h1>
+        <div class="mt-10">
+            <x-application-logo class="w-auto h-7 sm:h-8 text-black dark:text-white" />
+        </div>
     </x-slot:header>
     <div
         class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gradient-to-bl dark:from-teal-950 dark:via-black dark:to-teal-950  shadow-md overflow-hidden sm:rounded-lg border border-gray-200 dark:border-gray-700">

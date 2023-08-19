@@ -4,8 +4,11 @@
     <div class="container">
         <div class="flex flex-wrap">
             <div class="w-full px-2 mb-12 text-slate-300 font-medium md:w-1/3 2xl:pl-14">
-                <h2 class="text-xl font-bold text-white mb-2 md:text-lg lg:text-xl">Study Club <span
-                        class="text-primary">Informatika</span></h2>
+                {{-- <h2 class="text-xl font-bold text-white mb-2 md:text-lg lg:text-xl">Study Club <span
+                        class="text-primary">Informatika</span></h2> --}}
+                <div class="mb-2">
+                    <x-application-logo class="w-auto h-[1.35rem] text-white" />
+                </div>
                 <h3 class="mb-1 text-lg font-bold dark:text-slate-400">Hubungi Kami</h3>
                 <p class="mb-1 text-xs dark:text-slate-400">studyclubinformatika305@gmail.com</p>
                 <p class="mb-1 text-xs dark:text-slate-400">BTN SAO ASRI Blok E2/25, Lapadde, Kec.Ujung, Kota Parepare

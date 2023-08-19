@@ -3,10 +3,8 @@
         <div class="flex items-center justify-between relative">
             {{-- Logo --}}
             <div class="flex items-center">
-                <div class="py-6">
-                    <a href="{{ route('home') }}" class="font-bold text-xl dark:text-white">
-                        Study Club <span class="text-primary">Informatika</span>
-                    </a>
+                <div class="py-7">
+                    <x-application-logo class="w-auto h-[1.35rem] text-black dark:text-white" />
                 </div>
             </div>
             {{-- /Logo --}}
