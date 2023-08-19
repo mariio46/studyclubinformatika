@@ -1,4 +1,4 @@
-<section id="events" class="pt-20 lg:py-10 ">
+<section id="events" class="pt-20 lg:pt-36 ">
     <div class="container">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-5 ">
             <div class="col-span-6 flex items-center  ">
