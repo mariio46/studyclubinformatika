@@ -51,7 +51,7 @@ class OperatorListController extends Controller
             'password' => ['required', 'confirmed', Password::defaults()],
         ]);
 
-        User::create([
+        $user = User::create([
             'has_verified' => 1,
             'name' => $name = $request->name,
             'username' => strtolower(Str::of($name)->explode(' ')->get(0)).strtolower(mt_rand(0, 99999)),
@@ -59,7 +59,9 @@ class OperatorListController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return to_route('operator.index')->with('status', 'Operator has been added!');
+        $user->assignRole('operator');
+
+        return back()->with('status', 'Operator has been added!');
     }
 
     public function operatorForgetPassword(Request $request)

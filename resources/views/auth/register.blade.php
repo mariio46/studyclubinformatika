@@ -46,6 +46,15 @@
                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
             </div>
 
+            <!-- Show Password -->
+            <div class="block mt-4">
+                <label for="show" class="inline-flex items-center mt-1">
+                    <input id="show" type="checkbox"
+                        class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-green-600 shadow-sm focus:ring-green-500 dark:focus:ring-green-600 dark:focus:ring-offset-gray-800">
+                    <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Show password') }}</span>
+                </label>
+            </div>
+
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 dark:focus:ring-offset-gray-800"
                     href="{{ route('login') }}">
@@ -58,4 +67,15 @@
             </div>
         </form>
     </div>
+
+    <script>
+        const password = document.getElementById("password");
+        const password_confirmation = document.getElementById("password_confirmation");
+        const show = document.getElementById("show");
+
+        show.onchange = function(e) {
+            password.type = show.checked ? "text" : "password";
+            password_confirmation.type = show.checked ? "text" : "password";
+        }
+    </script>
 </x-guest-layout>

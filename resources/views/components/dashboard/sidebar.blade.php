@@ -34,7 +34,6 @@
                         @endhasanyrole
                     </a>
                 </li>
-                {{-- @can('registrant') --}}
                 <li>
                     <a href="{{ route('status.index') }}"
                         class="{{ Request::routeIs('status.*') ? 'bg-slate-200/70 dark:bg-slate-200/20' : null }} flex items-center p-2 text-dark rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
@@ -51,10 +50,9 @@
                             <path
                                 d="M5 11C5.14683 11.0004 5.29194 10.9684 5.42502 10.9064C5.55809 10.8443 5.67588 10.7537 5.77 10.641L10 5.56302L14.231 10.641C14.3282 10.7485 14.4469 10.8344 14.5793 10.8932C14.7118 10.9519 14.8551 10.9823 15 10.9823C15.1449 10.9823 15.2882 10.9519 15.4207 10.8932C15.5531 10.8344 15.6718 10.7485 15.769 10.641L20.769 4.64102C20.939 4.43707 21.021 4.17394 20.997 3.90951C20.973 3.64509 20.8449 3.40103 20.641 3.23102C20.437 3.06102 20.1739 2.979 19.9095 3.003C19.6451 3.02701 19.401 3.15507 19.231 3.35902L15 8.43802L10.769 3.35902C10.6718 3.25156 10.5531 3.16567 10.4207 3.10689C10.2882 3.0481 10.1449 3.01773 10 3.01773C9.85508 3.01773 9.71178 3.0481 9.57933 3.10689C9.44688 3.16567 9.32821 3.25156 9.231 3.35902L4.231 9.35902C4.10903 9.50507 4.03126 9.68289 4.00682 9.87159C3.98238 10.0603 4.01229 10.2521 4.09303 10.4244C4.17377 10.5967 4.302 10.7423 4.46265 10.8443C4.6233 10.9463 4.80971 11.0003 5 11Z" />
                         </svg>
-                        <span class="flex-1 ml-3 whitespace-nowrap group-hover:text-primary">Activity Progress</span>
+                        <span class="flex-1 ml-3 whitespace-nowrap group-hover:text-primary">Timeline</span>
                     </a>
                 </li>
-                {{-- @endcan --}}
                 <li>
                     <a href="{{ route('profile.edit') }}"
                         class="{{ Request::routeIs('profile.*') ? 'bg-slate-200/70 dark:bg-slate-200/20' : null }} flex items-center p-2 text-dark rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">

@@ -22,7 +22,8 @@ class UserPictureUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'picture' => 'required|image|mimes:jpg,jpeg|file|max:1024', // max 1mb
+            // 'picture' => 'required|image|mimes:jpg,jpeg|file|max:1024', // max 1mb
+            'picture' => ['required', 'image', 'mimes:jpg,jpeg', 'file', 'max:1024'], // max 1mb
         ];
     }
 }

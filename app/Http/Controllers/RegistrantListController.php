@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\RegistrantResource;
 use App\Http\Resources\RegistrantSingleResource;
 use App\Models\Biodata;
+use App\Models\RegistrationStatus;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -27,8 +28,10 @@ class RegistrantListController extends Controller
                 ->withCount('biodata')
                 ->get();
         }
+        $data = RegistrationStatus::query()->where('id', 1)->select('status')->first()->status;
 
         return view('operator.registrant.index', [
+            'open' => $data == 1 ? true : false,
             'registrants' => RegistrantResource::collection($registrants),
         ]);
     }

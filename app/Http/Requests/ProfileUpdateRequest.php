@@ -17,7 +17,7 @@ class ProfileUpdateRequest extends FormRequest
     {
         return [
             'name' => ['string', 'max:255'],
-            'username' => ['alpha_dash', 'max:25', Rule::unique(User::class)->ignore($this->user()->id)],
+            'username' => ['alpha_dash', 'min:5', 'max:25', Rule::unique(User::class)->ignore($this->user()->id)],
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
             'whatsapp' => ['numeric', 'min_digits:10', 'max_digits:14'],
         ];

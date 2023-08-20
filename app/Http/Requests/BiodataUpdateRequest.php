@@ -27,9 +27,9 @@ class BiodataUpdateRequest extends FormRequest
     {
         return [
             'fullname' => ['required', 'string', 'max:255'],
-            'whatsapp' => ['numeric', 'min_digits:10', 'max_digits:14'],
-            'religion' => ['string', 'max:255'],
-            'sex' => ['string', 'max:255'],
+            'whatsapp' => ['numeric', 'min_digits:10', 'max_digits:15'],
+            'religion' => ['required', 'string', 'max:255'],
+            'sex' => ['required', 'string', 'max:255'],
             'city' => ['string', 'max:255'],
             'birthday' => ['string'],
             'address' => ['max:255'],
@@ -38,12 +38,12 @@ class BiodataUpdateRequest extends FormRequest
             'major' => ['string', 'max:255'],
             'semester' => ['integer', 'max:8'],
             'father' => ['string', 'max:255'],
-            'fatherWhatsapp' => ['numeric', 'min_digits:10', 'max_digits:14'],
+            'fatherWhatsapp' => ['string'],
             'mother' => ['string', 'max:255'],
-            'motherWhatsapp' => ['numeric', 'min_digits:10', 'max_digits:14'],
-            'vehicle' => ['string', 'max:255'],
+            'motherWhatsapp' => ['string'],
+            'vehicle' => ['required', 'string', 'max:255'],
             'disease' => ['string'],
-            'goals' => ['string'],
+            'goals' => ['string', 'min:30', 'max:255'],
             'organizationsExp' => ['string'],
         ];
     }

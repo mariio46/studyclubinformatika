@@ -1,6 +1,19 @@
 <x-auth-layout title="Profil & Biodata Information">
     <div class="space-y-3 min-[1440px]:space-y-3">
         <x-work-space>
+            @if ($errors->any())
+                <div class="flex p-4 mb-4 text-sm text-red-600 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                    role="alert">
+                    <div>
+                        <span class="font-medium">Oops, here's some error for you :</span>
+                        <ul class="mt-1.5 ml-4 list-disc list-inside">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            @endif
             <div class="space-y-3 min-[1440px]:space-y-3">
                 <div class="flex w-full justify-between">
                     <x-dashboard.header title="Profile and Biodata" description="1">

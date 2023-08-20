@@ -11,7 +11,7 @@
     </button>
 </li>
 <div id="dropdownAvatarName"
-    class="z-10 hidden bg-white border border-gray-200 dark:border-gray-600 divide-y divide-gray-200 rounded-lg shadow w-[17rem] dark:bg-black dark:divide-gray-600">
+    class="z-10 hidden bg-white border border-gray-200 dark:border-gray-600 divide-y divide-gray-200 rounded-lg shadow w-[17rem] dark:bg-black dark:divide-gray-600 ">
     <div class="px-4 py-4 text-sm select-none ">
         <div class="font-medium text-gray-900 dark:text-white">{{ auth()->user()->getNickName() }}</div>
         <div class="truncate text-gray-500 dark:text-gray-400">{{ auth()->user()->email }}</div>

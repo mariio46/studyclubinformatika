@@ -31,7 +31,18 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        // return $request;
+        if (strlen(User::count()) == 1) {
+            $num = '0'.User::count() + 1;
+            // return $num;
+        } elseif (strlen(User::count()) == 2) {
+            $num = '0'.User::count() + 1;
+            $num = $num == '0100' ? 100 : $num;
+            // return $num;
+        } else {
+            $num = User::count() + 1;
+            // return $num;
+        }
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
@@ -41,13 +52,21 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'has_verified' => 0,
             'name' => $name = $request->name,
-            'username' => strtolower(Str::of($name)->explode(' ')->get(0)).mt_rand(0, 99999),
+            'username' => strtolower(Str::of($name)->explode(' ')->get(0)).'12'.$num,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
+        $user->biodata()->create([
+            'user_id' => $user->id,
+        ]);
+        $user->registrantActivity()->create([
+            'user_id' => $user->id,
+            'account_registration' => 1,
+            'account_registration_time' => now(),
+            'create_biodata' => 1,
+            'create_biodata_time' => now(),
+        ]);
         event(new Registered($user));
-
         Auth::login($user);
 
         return redirect(RouteServiceProvider::DASHBOARD);

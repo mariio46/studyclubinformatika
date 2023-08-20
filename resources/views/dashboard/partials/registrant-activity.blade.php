@@ -37,7 +37,7 @@
                         class="absolute w-3 h-3 bg-green-400 rounded-full mt-1.5 -left-1.5 border border-white dark:border-green-900 dark:bg-green-400">
                     </div>
                     <time class="mb-1 text-xs font-normal leading-none text-gray-400 dark:text-gray-400">
-                        {{ 'completed ' .auth()->user()->created_at->diffForHumans() }}
+                        {{ 'completed ' . \Carbon\Carbon::parse($user->account_registration_time)->diffForHumans() }}
                     </time>
                     <h3 class="text-lg font-semibold text-green-400 ">
                         Account Registration

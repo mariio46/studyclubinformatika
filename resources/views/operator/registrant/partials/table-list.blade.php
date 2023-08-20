@@ -69,30 +69,30 @@
                     @endif
                 </td>
                 <td class="py-4 flex items-center gap-1">
-                    @hasrole('operator')
-                        @if ($item->has_verified == 1)
-                            <form action="{{ route('registrant.unverify', $item) }}" method="post">
-                                @csrf
-                                @method('put')
-                                <div class="flex items-center">
-                                    <button type="submit">
-                                        <span class="font-medium text-yellow-400 hover:underline">Unverified</span>
-                                    </button>
-                                </div>
-                            </form>
-                        @else
-                            <form action="{{ route('registrant.verify', $item) }}" method="post">
-                                @csrf
-                                @method('put')
-                                <div class="flex items-center">
-                                    <button type="submit">
-                                        <span class="font-medium text-sky-500 hover:underline">Verified</span>
-                                    </button>
-                                </div>
-                            </form>
-                        @endif
-                        |
-                    @endhasrole
+                    {{-- @hasrole('operator')
+                    @endhasrole --}}
+                    @if ($item->has_verified == 1)
+                        <form action="{{ route('registrant.unverify', $item) }}" method="post">
+                            @csrf
+                            @method('put')
+                            <div class="flex items-center">
+                                <button type="submit">
+                                    <span class="font-medium text-yellow-400 hover:underline">Unverified</span>
+                                </button>
+                            </div>
+                        </form>
+                    @else
+                        <form action="{{ route('registrant.verify', $item) }}" method="post">
+                            @csrf
+                            @method('put')
+                            <div class="flex items-center">
+                                <button type="submit">
+                                    <span class="font-medium text-sky-500 hover:underline">Verified</span>
+                                </button>
+                            </div>
+                        </form>
+                    @endif
+                    |
                     @hasrole('admin')
                         <form action="{{ route('registrant.promote', $item) }}" method="post">
                             @csrf
@@ -108,17 +108,21 @@
                     @endhasrole
                     <a href="{{ request()->routeIs('registrant.index') ? route('registrant.show', $item) : route('operator.show', $item) }}"
                         class="font-medium text-fuchsia-500 dark:text-fuchsia-500 hover:underline"> Show</a>
-                    |
-                    <form action="{{ route('registrant.delete', $item) }}" method="post">
-                        @csrf
-                        @method('delete')
-                        <div class="flex items-center">
-                            <button type="submit"
-                                @if ($item->biodata_count == 1 || $item->has_verified == 1) onclick="return confirm('Are you sure want to delete {{ $item->getNickname() }}?')"> @endif
-                                <span class="font-medium text-red-600 hover:underline">Delete</span>
-                            </button>
-                        </div>
-                    </form>
+                    @if (
+                        !$open ||
+                            auth()->user()->hasRole('admin'))
+                        |
+                        <form action="{{ route('registrant.delete', $item) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <div class="flex items-center">
+                                <button type="submit"
+                                    @if ($item->biodata_count == 1 || $item->has_verified == 1) onclick="return confirm('Are you sure want to delete {{ $item->getNickname() }}?')"> @endif
+                                    <span class="font-medium text-red-600 hover:underline">Delete</span>
+                                </button>
+                            </div>
+                        </form>
+                    @endif
                 </td>
             </tr>
         @empty
