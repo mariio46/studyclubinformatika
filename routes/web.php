@@ -27,8 +27,9 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(BiodataController::class)->group(function () {
         Route::get('biodata', 'index')->name('biodata.index');
         Route::post('biodata', 'store')->name('biodata.store');
-        Route::put('biodata', 'update')->name('biodata.update');
-        Route::put('biodata/picture', 'pictureUpdate')->name('user.picture.update');
+        Route::put('biodata', 'biodataUpdate')->name('biodata.update');
+        Route::put('biodata/profile', 'profileUpdate')->name('biodata.profile.update');
+        Route::put('biodata/picture', 'pictureUpdate')->name('biodata.picture.update');
     });
 
     Route::controller(PdfController::class)->group(function () {

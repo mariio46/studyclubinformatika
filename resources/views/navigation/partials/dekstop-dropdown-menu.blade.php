@@ -34,7 +34,11 @@
         <li>
             <x-side-navigation-link href="{{ route('biodata.index') }}">
                 <x-svg class="w-5 h-5" svg="biodata" fill="none" strokeWidth="1.5" stroke="currentColor" />
-                Biodata
+                @hasanyrole(['operator', 'admin'])
+                    Profile
+                @else
+                    Biodata
+                @endhasanyrole
             </x-side-navigation-link>
         </li>
         <li>

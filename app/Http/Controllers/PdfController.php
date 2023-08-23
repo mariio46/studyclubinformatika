@@ -29,7 +29,7 @@ class PdfController extends Controller
                 ->with(['biodata' => fn ($query) => $query->whereNotNull([
                     'fullname', 'whatsapp', 'sex', 'religion', 'city', 'birthday', 'address', 'university', 'faculty',
                     'major', 'semester', 'father', 'fatherWhatsapp', 'mother', 'motherWhatsapp', 'vehicle', 'organizationsExp', 'goals',
-                ])])
+                ])->firstOr(callback: fn () => abort(504))])
                 ->firstOr(callback: fn () => abort(504));
 
             return view('biodata.report', ['user' => new RegistrantSingleResource($user)]);
@@ -49,10 +49,8 @@ class PdfController extends Controller
                 ->with(['biodata' => fn ($query) => $query->whereNotNull([
                     'fullname', 'whatsapp', 'sex', 'religion', 'city', 'birthday', 'address', 'university', 'faculty',
                     'major', 'semester', 'father', 'fatherWhatsapp', 'mother', 'motherWhatsapp', 'vehicle', 'organizationsExp', 'goals',
-                ])])
+                ])->firstOr(callback: fn () => abort(504))])
                 ->firstOr(callback: fn () => abort(504));
-            // ->firstOrFail();
-
             $timeline = auth()->user()->registrantActivity;
             if (! $timeline->download_biodata) {
                 RegistrantActivity::where('user_id', $user->id)->update([
@@ -61,7 +59,6 @@ class PdfController extends Controller
                 ]);
             }
 
-            // return new RegistrantSingleResource($user);
             return view('biodata.report-print', compact('user'));
         }
 

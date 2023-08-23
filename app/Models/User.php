@@ -64,4 +64,18 @@ class User extends Authenticatable
             'email' => $this->email,
         ];
     }
+
+    public static function getRegistrationCode()
+    {
+        /**
+         * To get registration code :
+         * (Total User - User has role)
+         */
+        $totalUser = User::whereRaw('id = (select max(`id`) from users)')->select('id')->first()->id;
+        $totalUserHasRole = User::whereHas('roles')->count();
+        $result = $totalUser - $totalUserHasRole;
+        $registrationCode = sprintf('12%03s', $result + 1);
+
+        return $registrationCode;
+    }
 }

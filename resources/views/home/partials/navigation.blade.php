@@ -1,4 +1,4 @@
-<header id="nav" class="bg-transparent absolute top-0 left-0 w-full flex items-center z-[39]">
+{{-- <header id="nav" class="bg-transparent absolute top-0 left-0 w-full flex items-center z-[39]">
     <div class="
     @if (Request::routeIs('home')) container @else w-full px-3 sm:px-6 @endif">
         <div class="flex items-center justify-between relative">
@@ -247,4 +247,4 @@
             </div>
         </div>
     </div>
-</header>
+</header> --}}

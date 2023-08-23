@@ -25,7 +25,8 @@
         </div>
 
         <div class="max-w-sm mt-5">
-            @include('admin.operator.partials.search-input-form')
+            {{-- @include('admin.operator.partials.search-input-form') --}}
+            <x-search-input-form :route="route('operator.index')" placeholder="Search Operator" />
         </div>
 
         <div class="relative overflow-x-auto mt-5">
@@ -71,8 +72,6 @@
                     </li>
                 @endforelse
             </ul>
-
-
         </div>
     </x-work-space>
     @include('admin.operator.partials.create-modal')

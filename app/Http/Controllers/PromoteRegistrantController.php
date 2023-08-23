@@ -11,6 +11,9 @@ class PromoteRegistrantController extends Controller
         if ($user->biodata) {
             $user->biodata->delete();
         }
+        if ($user->registrantActivity) {
+            $user->registrantActivity->delete();
+        }
         $user->assignRole('operator');
 
         return back();

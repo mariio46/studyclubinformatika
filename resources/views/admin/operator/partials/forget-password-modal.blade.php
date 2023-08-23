@@ -7,7 +7,7 @@
                 This is a page where only admin can change operator password.
                 </x-slot>
         </x-dashboard.header>
-        <input type="hidden" name="userId" value="{{ $registrant->id }}">
+        <input type="hidden" name="userId" value="{{ $operator->id }}">
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />

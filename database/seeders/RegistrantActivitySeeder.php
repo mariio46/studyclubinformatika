@@ -11,7 +11,7 @@ class RegistrantActivitySeeder extends Seeder
     public function run(): void
     {
         $num = User::whereHas('roles')->count() + 1;
-        for ($i = $num; $i <= 50; $i++) {
+        for ($i = $num; $i <= 51; $i++) {
             RegistrantActivity::create([
                 'user_id' => $i,
                 'account_registration' => 1,

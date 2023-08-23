@@ -28,7 +28,7 @@
         </div>
     @endisset
 @else
-    <x-dashboard.header title="Biodata" description="3">
+    <x-dashboard.header title="Biodata" description="2">
         <x-slot:header>
             <span class="text-red-500">
                 {{ 'Sorry, Registration is closed.' }}

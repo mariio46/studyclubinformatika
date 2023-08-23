@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\BiodataUpdateRequest;
-use App\Http\Requests\UserPictureUpdateRequest;
+use App\Http\Requests\RegistrantBiodataUpdateRequest;
+use App\Http\Requests\RegistrantPictureUpdateRequest;
+use App\Http\Requests\RegistrantProfileUpdateRequest;
 use App\Models\Biodata;
 use App\Models\RegistrantActivity;
 use App\Models\RegistrationStatus;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -52,7 +54,7 @@ class BiodataController extends Controller
         ]);
     }
 
-    public function pictureUpdate(UserPictureUpdateRequest $request)
+    public function pictureUpdate(RegistrantPictureUpdateRequest $request): RedirectResponse
     {
         if ($request->file('picture')) {
             if ($request->oldPicture) {
@@ -62,18 +64,28 @@ class BiodataController extends Controller
             $file = $request->file('picture');
             $orginalExtension = $file->getClientOriginalExtension();
         }
-        User::where('id', Auth::user()->id)->update([
-            // Result of Custom Name File
-            'picture' => $file->storeAs(
-                'image/profile-picture',
-                'photo-by'.'-'.Auth::user()->username.'-'.mt_rand(0, 99999).'.'.$orginalExtension
-            ),
-        ]);
+        $picture = $file->storeAs('image/profile-picture', 'photo-by'.'-'.Auth::user()->username.'-'.mt_rand(0, 99999).'.'.$orginalExtension);
+        User::where('id', Auth::user()->id)->update(['picture' => $picture]);
 
         return back()->with('status-success', 'Picture updated');
     }
 
-    public function update(BiodataUpdateRequest $request)
+    public function profileUpdate(RegistrantProfileUpdateRequest $request): RedirectResponse
+    {
+        if ($request->userId == 1) {
+            return back()->with('status-failed', 'Mario cant be edited, nice try buddy!');
+        }
+        $request->user()->fill($request->validated());
+
+        if ($request->user()->isDirty('email')) {
+            $request->user()->email_verified_at = null;
+        }
+        $request->user()->save();
+
+        return back()->with('status-success', 'Profile updated');
+    }
+
+    public function biodataUpdate(RegistrantBiodataUpdateRequest $request): RedirectResponse
     {
         if ($this->open) {
             $user = auth()->user()->registrantActivity;
@@ -83,27 +95,8 @@ class BiodataController extends Controller
                     'update_biodata_time' => now(),
                 ]);
             }
-            Biodata::where('user_id', auth()->user()->id)->update([
-                'fullname' => $request->fullname,
-                'whatsapp' => $request->whatsapp,
-                'religion' => $request->religion,
-                'sex' => $request->sex,
-                'city' => $request->city,
-                'birthday' => $request->birthday,
-                'address' => $request->address,
-                'university' => $request->university,
-                'faculty' => $request->faculty,
-                'major' => $request->major,
-                'semester' => $request->semester,
-                'father' => $request->father,
-                'fatherWhatsapp' => $request->fatherWhatsapp,
-                'mother' => $request->mother,
-                'motherWhatsapp' => $request->motherWhatsapp,
-                'vehicle' => $request->vehicle,
-                'disease' => $request->disease,
-                'goals' => $request->goals,
-                'organizationsExp' => $request->organizationsExp,
-            ]);
+            $validated = $request->validated();
+            Biodata::where('user_id', auth()->user()->id)->update($validated);
 
             return back()->with('status-success', 'Biodata Updated');
         }
@@ -129,6 +122,5 @@ class BiodataController extends Controller
         }
 
         return back()->with('status-failed', 'Sorry, registrtion is closed. Comeback anytime!');
-        // abort(403);
     }
 }

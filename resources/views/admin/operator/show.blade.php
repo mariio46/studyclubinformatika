@@ -3,9 +3,9 @@
         <div class="space-y-6">
             <div>
                 <div class="flex item-center justify-between">
-                    <x-dashboard.header title="{{ $registrant->name . ' Information' }}" description="1">
+                    <x-dashboard.header title="{{ $operator->name . ' Information' }}" description="1">
                         <x-slot:header>
-                            this is a full information of {{ $registrant->getNickname() }}.
+                            this is a full information of {{ $operator->getNickname() }}.
                         </x-slot:header>
                     </x-dashboard.header>
                     <x-header-menu-dropdown>
@@ -28,8 +28,8 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 space-y-3 lg:space-y-0 lg:space-x-3 mt-6">
                     <div class="col-span-4 min-[1440px]:col-span-3 lg:mb-5 min-[1440px]:mb-0">
                         <div class="flex justify-center lg:mt-7">
-                            @isset($registrant->picture)
-                                <img class="w-auto h-64 rounded-lg" src="{{ asset('storage/' . $registrant->picture) }}"
+                            @isset($operator->picture)
+                                <img class="w-auto h-64 rounded-lg" src="{{ asset('storage/' . $operator->picture) }}"
                                     alt="profile-picture">
                             @else
                                 <div role="status"
@@ -50,19 +50,19 @@
                     <div class="col-span-8 min-[1440px]:col-span-9 lg:mb-5 min-[1440px]:mb-0">
                         <div class="mb-2">
                             <x-input-label for="name" :value="__('name')" />
-                            <x-text-input disabled id="created_at" class="mt-1 block w-full" :value="old('created_at', $registrant->name)" />
+                            <x-text-input disabled id="created_at" class="mt-1 block w-full" :value="old('created_at', $operator->name)" />
                         </div>
                         <div class="mb-2">
                             <x-input-label for="username" :value="__('username')" />
-                            <x-text-input disabled id="created_at" class="mt-1 block w-full" :value="old('created_at', $registrant->username)" />
+                            <x-text-input disabled id="created_at" class="mt-1 block w-full" :value="old('created_at', $operator->username)" />
                         </div>
                         <div class="mb-4">
                             <x-input-label for="email" :value="__('email')" />
-                            <x-text-input disabled id="created_at" class="mt-1 block w-full" :value="old('created_at', $registrant->email)" />
+                            <x-text-input disabled id="created_at" class="mt-1 block w-full" :value="old('created_at', $operator->email)" />
                         </div>
                         <div class="mb-4">
                             <x-input-label for="created_at" :value="__('Whatsapp')" />
-                            <x-text-input disabled id="created_at" class="mt-1 block w-full" :value="old('created_at', $registrant->whatsapp)" />
+                            <x-text-input disabled id="created_at" class="mt-1 block w-full" :value="old('created_at', $operator->whatsapp)" />
                         </div>
                     </div>
                 </div>

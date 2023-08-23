@@ -16,14 +16,14 @@ class RegistrantListController extends Controller
     {
         if ($request->keyword) {
             $registrants = User::search($request->keyword)
-                ->query(fn ($query) => $query->select('id', 'name', 'username', 'email', 'created_at', 'has_verified')
+                ->query(fn ($query) => $query->select('id', 'name', 'username', 'picture', 'email', 'created_at', 'has_verified')
                     ->doesntHave('roles')
                     ->withCount('biodata'))
                 ->withTrashed()
                 ->get();
         } else {
             $registrants = User::query()
-                ->select('id', 'name', 'username', 'email', 'created_at', 'has_verified')
+                ->select('id', 'name', 'username', 'picture', 'email', 'created_at', 'has_verified')
                 ->doesntHave('roles')
                 ->withCount('biodata')
                 ->get();

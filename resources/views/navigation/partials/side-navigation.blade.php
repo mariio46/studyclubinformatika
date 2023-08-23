@@ -11,16 +11,20 @@
 
 <!-- drawer component new-->
 <div id="drawer-right-example"
-    class="fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform translate-x-full w-80 bg-white dark:bg-black duration-700"
+    class="fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform translate-x-full w-80 bg-white dark:bg-black duration-500"
     tabindex="-1" aria-labelledby="drawer-right-label">
-    <h5 id="drawer-right-label" class="flex text-base font-bold text-gray-900 capitalize dark:text-gray-200">
+    {{-- <h5 id="drawer-right-label" class="flex text-base font-bold text-gray-900 capitalize dark:text-gray-200">
         Study Club <span class="text-primary">&nbsp;Informatika</span>
-    </h5>
-    <button type="button" data-drawer-hide="drawer-right-example" aria-controls="drawer-right-example"
-        class="text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-2 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white dark:bg-gray-900">
-        <x-svg class="w-5 h-5" svg="close-sidebar" fill="none" strokeWidth="1.8" stroke="currentColor" />
-        <span class="sr-only">Close menu</span>
-    </button>
+    </h5> --}}
+
+    <div class="flex items-center">
+        <x-application-logo class="w-auto h-5 mt-1 text-black dark:text-white" />
+        <button type="button" data-drawer-hide="drawer-right-example" aria-controls="drawer-right-example"
+            class="text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-2 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white dark:bg-gray-900">
+            <x-svg class="w-5 h-5" svg="close-sidebar" fill="none" strokeWidth="1.8" stroke="currentColor" />
+            <span class="sr-only">Close menu</span>
+        </button>
+    </div>
     <div class="py-4 overflow-y-auto">
         <ul class="font-medium space-y-3">
             <li class="mt-1 select-none">
@@ -48,7 +52,13 @@
             <li>
                 <x-side-navigation-link mode href="{{ route('biodata.index') }}">
                     <x-svg class="w-5 h-5" svg="biodata" fill="none" strokeWidth="1.5" stroke="currentColor" />
-                    <span class="flex-1 whitespace-nowrap ml-1">Biodata</span>
+                    <span class="flex-1 whitespace-nowrap ml-1">
+                        @hasanyrole(['operator', 'admin'])
+                            Profile
+                        @else
+                            Biodata
+                        @endhasanyrole
+                    </span>
                 </x-side-navigation-link>
             </li>
             <li>

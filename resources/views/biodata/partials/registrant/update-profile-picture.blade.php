@@ -1,5 +1,5 @@
 <div class="w-full">
-    <form action="{{ route('user.picture.update') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('biodata.picture.update') }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('put')
         <x-input-label for="picture" :value="__('profile picture')" />

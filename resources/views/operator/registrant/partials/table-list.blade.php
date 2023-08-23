@@ -130,7 +130,7 @@
                 <td class="text-center" colspan="8">
                     <div class="py-6 text-md lg:text-lg animate-pulse text-red-600 font-medium mx-1">
                         <span class="underline">{{ Str::title(request()->keyword) }}</span>
-                        is not on this list.
+                        Not Found.
                     </div>
                 </td>
             </tr>

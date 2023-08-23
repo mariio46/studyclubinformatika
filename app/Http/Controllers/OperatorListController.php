@@ -36,7 +36,7 @@ class OperatorListController extends Controller
     public function show(User $user)
     {
         return view('admin.operator.show', [
-            'registrant' => new OperatorSingleResource($user
+            'operator' => new OperatorSingleResource($user
                 ->where('username', $user->username)
                 ->whereHas('roles', fn ($query) => $query->where('name', 'operator'))
                 ->firstOrFail()),
@@ -50,7 +50,6 @@ class OperatorListController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Password::defaults()],
         ]);
-
         $user = User::create([
             'has_verified' => 1,
             'name' => $name = $request->name,
@@ -58,7 +57,6 @@ class OperatorListController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
         $user->assignRole('operator');
 
         return back()->with('status', 'Operator has been added!');
@@ -66,11 +64,9 @@ class OperatorListController extends Controller
 
     public function operatorForgetPassword(Request $request)
     {
-        // return $request;
         $request->validateWithBag('operatorForgetPasswordDelition', [
             'password' => ['required', 'confirmed', Password::defaults()],
         ]);
-
         User::where('id', $request->userId)->update([
             'password' => Hash::make($request->password),
         ]);

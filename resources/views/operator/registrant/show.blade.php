@@ -43,7 +43,7 @@
                             <x-text-input disabled id="created_at" class="mt-1 block w-full" :value="old('created_at', $registrant->email)" />
                         </div>
                         <div class="mb-4">
-                            <x-input-label for="created_at" :value="__('created_at')" />
+                            <x-input-label for="created_at" :value="__('Joined')" />
                             <x-text-input disabled id="created_at" class="mt-1 block w-full" :value="old('created_at', $registrant->created_at->format('d F Y'))" />
                         </div>
                     </div>

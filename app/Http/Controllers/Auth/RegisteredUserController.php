@@ -31,18 +31,6 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        if (strlen(User::count()) == 1) {
-            $num = '0'.User::count() + 1;
-            // return $num;
-        } elseif (strlen(User::count()) == 2) {
-            $num = '0'.User::count() + 1;
-            $num = $num == '0100' ? 100 : $num;
-            // return $num;
-        } else {
-            $num = User::count() + 1;
-            // return $num;
-        }
-
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
@@ -52,7 +40,7 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'has_verified' => 0,
             'name' => $name = $request->name,
-            'username' => strtolower(Str::of($name)->explode(' ')->get(0)).'12'.$num,
+            'username' => strtolower(Str::of($name)->explode(' ')->get(0)).User::getRegistrationCode(),
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);

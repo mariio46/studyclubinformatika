@@ -9,11 +9,11 @@ if (
     document.documentElement.classList.remove("dark");
 }
 
-// lg
+// Toggle For Dekstop
 var themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
 var themeToggleLightIcon = document.getElementById("theme-toggle-light-icon");
 
-// responsive
+// Toggle For Mobile
 var responsiveThemeToggleDarkIcon = document.getElementById(
     "responsive-theme-toggle-dark-icon"
 );
@@ -22,7 +22,7 @@ var responsiveThemeToggleLightIcon = document.getElementById(
 );
 
 // Change the icons inside the button based on previous settings
-// Lg
+// Toggle For Dekstop
 if (
     localStorage.getItem("color-theme") === "dark" ||
     (!("color-theme" in localStorage) &&
@@ -33,7 +33,7 @@ if (
     themeToggleDarkIcon.classList.remove("hidden");
 }
 
-// responsive
+// Toggle For Mobile
 if (
     localStorage.getItem("color-theme") === "dark" ||
     (!("color-theme" in localStorage) &&
@@ -44,10 +44,10 @@ if (
     responsiveThemeToggleDarkIcon.classList.remove("hidden");
 }
 
-// lg
+// Toggle For Dekstop
 var themeToggleBtn = document.getElementById("theme-toggle");
 
-// responsive
+// Toggle For Mobile
 var responsiveThemeToggleBtn = document.getElementById(
     "responsive-theme-toggle"
 );
@@ -105,17 +105,3 @@ responsiveThemeToggleBtn.addEventListener("click", function () {
         }
     }
 });
-// Preview Image
-function previewImage() {
-    const image = document.querySelector("#picture");
-    const imgPreview = document.querySelector(".img_preview");
-
-    imgPreview.style.display = "block";
-
-    const oFReader = new FileReader();
-    oFReader.readAsDataURL(image.files[0]);
-
-    oFReader.onload = function (oFREvent) {
-        imgPreview.src = oFREvent.target.result;
-    };
-}

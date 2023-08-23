@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Biodata;
 use Illuminate\Foundation\Http\FormRequest;
 
-class BiodataUpdateRequest extends FormRequest
+class RegistrantBiodataUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,11 +14,8 @@ class BiodataUpdateRequest extends FormRequest
         return true;
     }
 
-    // Biodata::
-
     /**
      * Get the validation rules that apply to the request.
-     *
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
@@ -43,7 +39,7 @@ class BiodataUpdateRequest extends FormRequest
             'motherWhatsapp' => ['string'],
             'vehicle' => ['required', 'string', 'max:255'],
             'disease' => ['string'],
-            'goals' => ['string', 'min:30', 'max:255'],
+            'goals' => ['string', 'min:30'],
             'organizationsExp' => ['string'],
         ];
     }
