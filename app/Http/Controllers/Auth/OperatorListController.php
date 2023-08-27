@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\OperatorResource;
 use App\Http\Resources\OperatorSingleResource;
 use App\Models\User;

@@ -55,12 +55,12 @@ class UserSeeder extends Seeder
 
         // Pengurus
         User::create([
-            'name' => $name = 'Sania',
+            'name' => $name = 'Fitra Novianti',
             'picture' => 'image/default/avatar/Helper(3).png',
-            'whatsapp' => '0895420758681',
+            'whatsapp' => '082158694009',
             'has_verified' => 1,
-            'username' => '@'.strtolower(Str::of($name)->explode(' ')->get(0)).mt_rand(0, 99999),
-            'email' => 'sania@gmail.com',
+            'username' => '@fitra46_',
+            'email' => 'fitra@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'), // password
             'remember_token' => Str::random(10),

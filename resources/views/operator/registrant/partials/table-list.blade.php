@@ -20,11 +20,11 @@
                 Status
             </th>
             <th scope="col" class=" py-3">
-                Action
+                {{-- Action --}}
             </th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="h-44">
         @forelse ($registrants as $item)
             <tr class="dark:bg-transparent">
                 <td class="px-0 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -68,9 +68,12 @@
                         </form>
                     @endif
                 </td>
-                <td class="py-4 flex items-center gap-1">
-                    {{-- @hasrole('operator')
-                    @endhasrole --}}
+                <td>
+                    {{-- <div> --}}
+                    @include('operator.registrant.partials.menu-list')
+                    {{-- </div> --}}
+                </td>
+                {{-- <td class="py-4 flex items-center gap-1">
                     @if ($item->has_verified == 1)
                         <form action="{{ route('registrant.unverify', $item) }}" method="post">
                             @csrf
@@ -108,9 +111,8 @@
                     @endhasrole
                     <a href="{{ request()->routeIs('registrant.index') ? route('registrant.show', $item) : route('operator.show', $item) }}"
                         class="font-medium text-fuchsia-500 dark:text-fuchsia-500 hover:underline"> Show</a>
-                    @if (
-                        !$open ||
-                            auth()->user()->hasRole('admin'))
+                    @if (!$open ||
+    auth()->user()->hasRole('admin'))
                         |
                         <form action="{{ route('registrant.delete', $item) }}" method="post">
                             @csrf
@@ -123,7 +125,7 @@
                             </div>
                         </form>
                     @endif
-                </td>
+                </td> --}}
             </tr>
         @empty
             <tr>

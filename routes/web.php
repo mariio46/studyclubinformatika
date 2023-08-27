@@ -1,19 +1,14 @@
 <?php
 
 use App\Http\Controllers\BiodataController;
+use App\Http\Controllers\BiodataPdfExportController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PdfController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegistrantHelperController;
 use App\Http\Controllers\RegistrantProgressStatusController;
 use App\Http\Controllers\TutorialController;
 use Illuminate\Support\Facades\Route;
-
-// auth()->loginUsingId(1);
-// auth()->loginUsingId(2);
-// auth()->loginUsingId(10);
-// auth()->loginUsingId(16);
 
 Route::get('/', HomeController::class)->name('home');
 
@@ -32,9 +27,10 @@ Route::middleware(['auth'])->group(function () {
         Route::put('biodata/picture', 'pictureUpdate')->name('biodata.picture.update');
     });
 
-    Route::controller(PdfController::class)->group(function () {
-        Route::get('biodata/@{user:username}', 'index')->name('user.biodata.index');
-        Route::get('biodata/{user:username}/print', 'print')->name('user.biodata.print');
+    Route::controller(BiodataPdfExportController::class)->group(function () {
+        Route::get('biodata/{identifier}', 'preview')->name('biodata.export.preview');
+        Route::get('biodata/{identifier}/{code}/manual', 'manual')->name('biodata.export.manual');
+        Route::get('biodata/{identifier}/{code}/auto', 'auto')->name('biodata.export.auto');
     });
 
     Route::get('status', RegistrantProgressStatusController::class)->name('status.index');
