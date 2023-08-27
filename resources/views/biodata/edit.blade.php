@@ -104,11 +104,13 @@
                                 </x-slot:header>
                             @endif
                         </x-dashboard.header>
-                        <x-header-menu-dropdown>
-                            <x-slot:contents>
-                                @include('biodata.partials.registrant.reporting-menu')
-                            </x-slot:contents>
-                        </x-header-menu-dropdown>
+                        @if ($user->has_verified == 0 && $open)
+                            <x-header-menu-dropdown placement="bottom-end">
+                                <x-slot:contents>
+                                    @include('biodata.partials.registrant.reporting-menu')
+                                </x-slot:contents>
+                            </x-header-menu-dropdown>
+                        @endif
                     </div>
 
                     <div class="grid grid-cols-1 lg:grid-cols-12 lg:space-y-0 lg:space-x-3 mt-6">

@@ -5,7 +5,7 @@
     {{ auth()->user()->getNickname() }}
     <x-operator-verified-icon />
 @else
-    @if (auth()->user()->has_verified === 1)
+    @if (auth()->user()->has_verified == 1)
         {{ auth()->user()->getNickname() }}
         <x-registrant-verified-icon />
     @else

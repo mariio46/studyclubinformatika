@@ -5,15 +5,17 @@ use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\Auth\OperatorListController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Auth\PromoteRegistrantController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\RegistrantBiodataExportController;
+use App\Http\Controllers\Auth\RegistrantListController;
+use App\Http\Controllers\Auth\RegistrantsTableExportController;
+use App\Http\Controllers\Auth\RegistrationStatusController;
+use App\Http\Controllers\Auth\VerifiedRegistrantController;
 use App\Http\Controllers\Auth\VerifyEmailController;
-use App\Http\Controllers\OperatorListController;
-use App\Http\Controllers\PromoteRegistrantController;
-use App\Http\Controllers\RegistrantListController;
-use App\Http\Controllers\RegistrationStatusController;
-use App\Http\Controllers\VerifiedRegistrantController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['role:operator|admin'])->group(function () {
@@ -30,6 +32,18 @@ Route::middleware(['role:operator|admin'])->group(function () {
 
         Route::delete('registrants/unverified/delete', 'deleteUnverified')->name('registrant.unverified.delete');
         Route::delete('registrants/all/delete', 'deleteAll')->name('registrant.all.delete');
+    });
+
+    Route::controller(RegistrantBiodataExportController::class)->group(function () {
+        Route::get('registrant/pdf/{identifier}', 'preview')->name('registrant.pdf.preview');
+        Route::get('registrant/pdf/{identifier}/{code}/manual', 'manual')->name('registrant.pdf.manual');
+        Route::get('registrant/pdf/{identifier}/{code}/auto', 'auto')->name('registrant.pdf.auto');
+    });
+
+    Route::controller(RegistrantsTableExportController::class)->group(function () {
+        Route::get('registrant/table/pdf/preview', 'preview')->name('registrant.table.pdf.preview');
+        Route::get('registrant/table/pdf/manual', 'tableManual')->name('registrant.table.pdf.manual');
+        Route::get('registrant/table/pdf/auto', 'tableAuto')->name('registrant.table.pdf.auto');
     });
 
     Route::controller(VerifiedRegistrantController::class)->group(function () {

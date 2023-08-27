@@ -78,4 +78,16 @@ class User extends Authenticatable
 
         return $registrationCode;
     }
+
+    public function scopeWithRegistrantDetails($query, $identifier)
+    {
+        return $query->where('username', $identifier)
+            ->whereDoesntHave('roles')
+            ->select('id', 'name', 'username', 'email', 'picture')
+            ->whereNotNull(['id', 'name', 'username', 'email', 'picture'])
+            ->with(['biodata' => fn ($query) => $query->whereNotNull([
+                'fullname', 'whatsapp', 'sex', 'religion', 'city', 'birthday', 'address', 'university', 'faculty',
+                'major', 'semester', 'father', 'fatherWhatsapp', 'mother', 'motherWhatsapp', 'vehicle', 'organizationsExp', 'goals',
+            ])->firstOr(callback: fn () => abort(504))]);
+    }
 }

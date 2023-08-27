@@ -11,7 +11,7 @@
     </button>
     <!-- Dropdown menu -->
     <div id="dropdownDots"
-        class="z-10 hidden bg-white rounded-lg shadow w-60 dark:bg-gradient-to-tl dark:from-cyan-950 dark:via-black dark:to-cyan-950 dark:border dark:border-gray-700">
+        class="z-10 hidden bg-white rounded-lg shadow w-60 dark:bg-gradient-to-tl dark:from-cyan-950 dark:via-black dark:to-cyan-950 border border-gray-300 dark:border-gray-700">
         {{ $contents }}
     </div>
 </div>

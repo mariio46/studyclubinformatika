@@ -11,11 +11,6 @@ use Illuminate\Support\Str;
  */
 class BiodataFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
@@ -23,7 +18,7 @@ class BiodataFactory extends Factory
             'fullname' => fake()->name(),
             'whatsapp' => mt_rand(0, 99999999999999),
             'religion' => Str::title('islam'),
-            'sex' => Str::title('lakilaki'),
+            'sex' => Str::title('laki-laki'),
             'city' => fake()->city(),
             'birthday' => fake()->dateTime(),
             'address' => fake()->streetAddress(),
@@ -38,7 +33,7 @@ class BiodataFactory extends Factory
             'mother' => fake()->name(),
             'motherWhatsapp' => mt_rand(0, 99999999999999),
             'organizationsExp' => fake()->paragraph(),
-            'goals' => fake()->paragraph(),
+            'goals' => fake()->paragraph(1),
             'created_at' => now(),
         ];
     }

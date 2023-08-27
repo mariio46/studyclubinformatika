@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\RegistrantResource;
 use App\Http\Resources\RegistrantSingleResource;
 use App\Models\Biodata;
