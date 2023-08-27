@@ -39,6 +39,6 @@ class RegistrantBiodataExportController extends Controller
             ->firstOr(callback: fn () => abort(504));
         $pdf = Pdf::loadView('pdf.operator.registrant-biodata.automatic-biodata', ['user' => $user])->setPaper('legal', 'potrait');
 
-        return $pdf->download('biodata-' . $user->username . '-' . mt_rand(9999, 99999) . '.pdf');
+        return $pdf->download('biodata-'.$user->username.'-'.mt_rand(9999, 99999).'.pdf');
     }
 }

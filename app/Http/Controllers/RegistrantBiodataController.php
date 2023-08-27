@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-class BiodataController extends Controller
+class RegistrantBiodataController extends Controller
 {
     public $open;
 

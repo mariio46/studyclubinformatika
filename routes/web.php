@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\BiodataPdfExportController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RegistrantBiodataController;
 use App\Http\Controllers\RegistrantHelperController;
-use App\Http\Controllers\RegistrantProgressStatusController;
-use App\Http\Controllers\TutorialController;
+use App\Http\Controllers\RegistrantTimelineController;
+use App\Http\Controllers\RegistrantTutorialController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
@@ -19,7 +19,7 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('security', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('security', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::controller(BiodataController::class)->group(function () {
+    Route::controller(RegistrantBiodataController::class)->group(function () {
         Route::get('biodata', 'index')->name('biodata.index');
         Route::post('biodata', 'store')->name('biodata.store');
         Route::put('biodata', 'biodataUpdate')->name('biodata.update');
@@ -33,9 +33,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('biodata/{identifier}/{code}/auto', 'auto')->name('biodata.export.auto');
     });
 
-    Route::get('status', RegistrantProgressStatusController::class)->name('status.index');
+    Route::get('timeline', RegistrantTimelineController::class)->name('timeline.index');
 
-    Route::get('tutorial', TutorialController::class)->name('tutorial.index');
+    Route::get('tutorial', RegistrantTutorialController::class)->name('tutorial.index');
 
     Route::get('help', RegistrantHelperController::class)->name('help.index');
 });

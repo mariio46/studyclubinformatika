@@ -18,12 +18,12 @@
             </div>
 
             <div class="max-w-sm mt-5">
-                {{-- @include('operator.registrant.partials.search-input-form') --}}
                 <x-search-input-form :route="route('registrant.index')" placeholder="Search Registrant" />
             </div>
 
             <div class="relative overflow-x-auto mt-5">
-                <ul role="list" class="divide-y divide-gray-100 dark:divide-gray-700 min-h-[60vh] md:min-h-[50vh]">
+                <ul role="list"
+                    class="divide-y divide-gray-100 dark:divide-gray-700 min-h-[60vh] @if ($registrants->count() <= 5) md:min-h-[100vh] @endif">
                     @forelse ($registrants as $item)
                         <li class="flex justify-between gap-x-6 py-5 ">
                             <div class="flex min-w-0 gap-x-4">

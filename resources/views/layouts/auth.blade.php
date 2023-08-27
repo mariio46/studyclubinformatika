@@ -7,7 +7,7 @@
 
             <div class="pt-20">
                 {{-- Sidebar --}}
-                <x-dashboard.sidebar />
+                <x-sidebar />
 
                 <div class="p-4 lg:ml-64 lg:mr-5 rounded-lg">
                     <main>

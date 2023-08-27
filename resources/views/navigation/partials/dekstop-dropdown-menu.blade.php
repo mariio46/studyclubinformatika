@@ -42,8 +42,8 @@
             </x-side-navigation-link>
         </li>
         <li>
-            <x-side-navigation-link href="{{ route('status.index') }}">
-                <x-svg class="w-5 h-5" svg="timeline" fill="currentColor" />
+            <x-side-navigation-link href="{{ route('timeline.index') }}">
+                <x-svg class="w-5 h-5" svg="timeline" strokeWidth="1.5" stroke="currentColor" />
                 Timeline
             </x-side-navigation-link>
         </li>

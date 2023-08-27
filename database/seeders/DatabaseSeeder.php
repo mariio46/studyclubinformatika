@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
 
         // Status Pendaftaran (Buka / Tutup)
         RegistrationStatus::create([
-            'status' => 1,
+            'status' => 0,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -25,9 +25,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Pendaftar
-        // $this->call([
-        //     BiodataSeeder::class,
-        //     RegistrantActivitySeeder::class,
-        // ]);
+        $this->call([
+            BiodataSeeder::class,
+            RegistrantActivitySeeder::class,
+        ]);
     }
 }

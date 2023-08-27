@@ -15,15 +15,8 @@
                                 x-on:click.prevent="$dispatch('open-modal', 'add-operator')">
                                 <span
                                     class="flex items-center font-medium text-gray-700 dark:text-gray-300 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-1" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                        <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
-                                        <path d="M16 19h6"></path>
-                                        <path d="M19 16v6"></path>
-                                        <path d="M6 21v-2a4 4 0 0 1 4 -4h4"></path>
-                                    </svg>
+                                    <x-svg class="w-6 h-6 mr-1" svg="add" strokeWidth="1.5"
+                                        stroke="currentColor" />
                                     Add operator
                                 </span>
                             </button>

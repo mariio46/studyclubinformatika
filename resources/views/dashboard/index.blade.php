@@ -38,7 +38,7 @@
                             </x-slot:header>
                         </x-dashboard.header>
                         <div class="flex items-center">
-                            <x-primary-link class="mt-2" href="{{ route('status.index') }}">check</x-primary-link>
+                            <x-primary-link class="mt-2" href="{{ route('timeline.index') }}">check</x-primary-link>
                         </div>
                     @else
                         @include('dashboard.partials.biodata-information')
@@ -49,7 +49,7 @@
 
         @unlessrole(['operator', 'admin'])
             <x-work-space>
-                @include('dashboard.partials.registrant-activity')
+                <x-timeline :user="$user" />
             </x-work-space>
         @endunlessrole
     </div>

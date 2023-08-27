@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-class TutorialController extends Controller
+class RegistrantTutorialController extends Controller
 {
     public function __invoke()
     {
