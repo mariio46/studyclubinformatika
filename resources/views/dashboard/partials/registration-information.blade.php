@@ -1,4 +1,4 @@
-<x-dashboard.header title="Registration Information" description="1">
+<x-dashboard.header title="Registration Information" description="2">
     <x-slot name="header">
         @if ($open)
             <span class="text-green-400 animate-pulse">

@@ -20,8 +20,7 @@ class BiodataController extends Controller
 
     public function __construct()
     {
-        $data = RegistrationStatus::query()->where('id', 1)->select('status')->first()->status;
-        $this->open = $data == 1 ? true : false;
+        $this->open = RegistrationStatus::getRegistrationStatus();
     }
 
     public function index()

@@ -23,6 +23,14 @@ class RegistrantActivityFactory extends Factory
             'account_registration_time' => now(),
             'create_biodata' => 1,
             'create_biodata_time' => now(),
+            'update_biodata' => 1,
+            'update_biodata_time' => now(),
+            'download_biodata' => 1,
+            'download_biodata_time' => now(),
+            'interview_session' => 1,
+            'interview_session_time' => now(),
+            'registration_completed' => 1,
+            'registration_completed_time' => now(),
         ];
     }
 }

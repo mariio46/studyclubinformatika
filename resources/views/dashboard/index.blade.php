@@ -2,7 +2,7 @@
     <div class="space-y-3 min-[1440px]:space-y-3">
         @hasanyrole(['operator', 'admin'])
             <x-work-space>
-                <x-dashboard.header title="Information" description="6">
+                <x-dashboard.header title="Information" description="1">
                     <x-slot:header>
                         <span class="text-green-500">
                             {{ 'Welcome ' .auth()->user()->getNickname() .', you are ' .auth()->user()->roles->pluck('name')[0] }}.

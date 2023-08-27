@@ -7,15 +7,24 @@
                 </x-slot:header>
             </x-dashboard.header>
 
-            <x-header-menu-dropdown>
+            <x-header-menu-dropdown placement="bottom-end">
                 <x-slot:contents>
                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconButton">
                         <li>
                             <button type="submit" class="w-full text-left" x-data=""
                                 x-on:click.prevent="$dispatch('open-modal', 'add-operator')">
                                 <span
-                                    class="font-medium text-green-500 hover:underline block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                    Create operator
+                                    class="flex items-center font-medium text-gray-700 dark:text-gray-300 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-1" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+                                        <path d="M16 19h6"></path>
+                                        <path d="M19 16v6"></path>
+                                        <path d="M6 21v-2a4 4 0 0 1 4 -4h4"></path>
+                                    </svg>
+                                    Add operator
                                 </span>
                             </button>
                         </li>
@@ -25,12 +34,11 @@
         </div>
 
         <div class="max-w-sm mt-5">
-            {{-- @include('admin.operator.partials.search-input-form') --}}
             <x-search-input-form :route="route('operator.index')" placeholder="Search Operator" />
         </div>
 
         <div class="relative overflow-x-auto mt-5">
-            <ul role="list" class="divide-y divide-gray-100 dark:divide-gray-700">
+            <ul role="list" class="divide-y divide-gray-100 dark:divide-gray-700 min-h-[50vh]">
                 @forelse ($operators as $item)
                     <li class="flex justify-between gap-x-6 py-5">
                         <div class="flex min-w-0 gap-x-4">
@@ -50,7 +58,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="flex items-center">
+                        <div class="flex items-center gap-x-2">
                             <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
                                 <span
                                     class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full

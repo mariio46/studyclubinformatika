@@ -1,4 +1,4 @@
-<button id="{{ $item->id }}" data-dropdown-toggle="{{ $item->username }}" data-dropdown-placement="left-end"
+<button id="{{ $item->id }}" data-dropdown-toggle="{{ $item->username }}" data-dropdown-placement="bottom-end"
     class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-2 focus:outline-none dark:text-gray-200 focus:ring-gray-50 dark:bg-transparent dark:hover:bg-gray-900/50 dark:focus:ring-gray-600 mr-1"
     type="button">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -12,7 +12,7 @@
     <ul class="py-2 text-sm divide-y divide-gray-200 dark:divide-gray-700" aria-labelledby="{{ $item->id }}">
         <li>
             <a href="{{ route('operator.show', $item) }}"
-                class="block px-4 py-2 text-fuchsia-500 hover:bg-gray-100 dark:hover:bg-gray-600">
+                class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600">
                 Show
             </a>
         </li>

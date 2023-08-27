@@ -5,7 +5,7 @@
             data-accordion-target="#registrant-accordion-body-1" aria-expanded="true"
             aria-controls="registrant-accordion-body-1">
             <span>
-                <x-dashboard.header title="Registration Progress">
+                <x-dashboard.header title="Registration Progress" description="9">
                     <x-slot:header>
                         @isset($user->registration_completed)
                             <span class="text-gray-900 dark:text-gray-400">
