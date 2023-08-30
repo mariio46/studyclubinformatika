@@ -3,11 +3,11 @@
         <div class="space-y-6">
             <div>
                 <div class="flex item-center justify-between">
-                    <x-dashboard.header title="{{ $operator->name . ' Information' }}" description="1">
+                    <x-header title="{{ $operator->name . ' Information' }}" description="1">
                         <x-slot:header>
                             this is a full information of {{ $operator->getNickname() }}.
                         </x-slot:header>
-                    </x-dashboard.header>
+                    </x-header>
                     <x-header-menu-dropdown>
                         <x-slot:contents>
                             <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"

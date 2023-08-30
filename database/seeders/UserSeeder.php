@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
         // Admin
         User::create([
             'name' => 'Mario',
-            'picture' => 'image/default/avatar/Helper(13).png',
+            'picture' => 'image/default/avatar/Helper(12).png',
             'has_verified' => 1,
             'username' => '@mario46_',
             'email' => 'mariomad2296@gmail.com',
@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
             'picture' => 'image/default/avatar/Helper(6).png',
             'whatsapp' => '082249501963',
             'has_verified' => 1,
-            'username' => '@'.strtolower(Str::of($name)->explode(' ')->get(0)).mt_rand(0, 99999),
+            'username' => '@' . strtolower(Str::of($name)->explode(' ')->get(0)) . mt_rand(0, 99999),
             'email' => 'wira@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'), // password
@@ -46,7 +46,7 @@ class UserSeeder extends Seeder
             'picture' => 'image/default/avatar/Helper(2).png',
             'whatsapp' => '089604472897',
             'has_verified' => 1,
-            'username' => '@'.strtolower(Str::of($name)->explode(' ')->get(0)).mt_rand(0, 99999),
+            'username' => '@' . strtolower(Str::of($name)->explode(' ')->get(0)) . mt_rand(0, 99999),
             'email' => 'nisa@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'), // password
@@ -72,7 +72,7 @@ class UserSeeder extends Seeder
             'picture' => 'image/default/avatar/Helper(5).png',
             'whatsapp' => '085256949235',
             'has_verified' => 1,
-            'username' => '@'.strtolower(Str::of($name)->explode(' ')->get(0)).mt_rand(0, 99999),
+            'username' => '@' . strtolower(Str::of($name)->explode(' ')->get(0)) . mt_rand(0, 99999),
             'email' => 'jabal@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'), // password
@@ -85,7 +85,7 @@ class UserSeeder extends Seeder
             'picture' => 'image/default/avatar/Helper(9).png',
             'whatsapp' => '082154838046',
             'has_verified' => 1,
-            'username' => '@'.strtolower(Str::of($name)->explode(' ')->get(0)).mt_rand(0, 99999),
+            'username' => '@' . strtolower(Str::of($name)->explode(' ')->get(0)) . mt_rand(0, 99999),
             'email' => 'alif@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'), // password
@@ -95,10 +95,10 @@ class UserSeeder extends Seeder
         // Pengurus
         User::create([
             'name' => $name = 'Ahsan Mubarak',
-            'picture' => 'image/default/avatar/Helper(11).png',
+            'picture' => 'image/default/avatar/Helper(10).png',
             'whatsapp' => '082154838046',
             'has_verified' => 1,
-            'username' => '@'.strtolower(Str::of($name)->explode(' ')->get(0)).mt_rand(0, 99999),
+            'username' => '@' . strtolower(Str::of($name)->explode(' ')->get(0)) . mt_rand(0, 99999),
             'email' => 'ahsan@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'), // password
@@ -111,7 +111,7 @@ class UserSeeder extends Seeder
             'picture' => 'image/default/avatar/Helper(4).png',
             'whatsapp' => '082154838046',
             'has_verified' => 1,
-            'username' => '@'.strtolower(Str::of($name)->explode(' ')->get(0)).mt_rand(0, 99999),
+            'username' => '@' . strtolower(Str::of($name)->explode(' ')->get(0)) . mt_rand(0, 99999),
             'email' => 'hirawati@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'), // password
@@ -121,10 +121,10 @@ class UserSeeder extends Seeder
         // Pengurus
         User::create([
             'name' => $name = 'Putri',
-            'picture' => 'image/default/avatar/Helper(12).png',
+            'picture' => 'image/default/avatar/Helper(11).png',
             'whatsapp' => '082154838046',
             'has_verified' => 1,
-            'username' => '@'.strtolower(Str::of($name)->explode(' ')->get(0)).mt_rand(0, 99999),
+            'username' => '@' . strtolower(Str::of($name)->explode(' ')->get(0)) . mt_rand(0, 99999),
             'email' => 'putri@gmail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'), // password

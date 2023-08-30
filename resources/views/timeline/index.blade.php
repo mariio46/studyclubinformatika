@@ -9,11 +9,11 @@
                         data-accordion-target="#operator-accordion-body-1" aria-expanded="true"
                         aria-controls="operator-accordion-body-1">
                         <span>
-                            <x-dashboard.header title="Registrant Information">
+                            <x-header title="Registrant Information">
                                 <x-slot:header>
                                     this is all registrant information.
                                 </x-slot:header>
-                            </x-dashboard.header>
+                            </x-header>
                         </span>
                         <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">

@@ -45,14 +45,14 @@
                                 <li
                                     class="lg:hidden flex items-center text-base text-gray-800 mx-4 lg:mx-3 xl:mx-4 lg:group-hover:font-bold lg:font-medium  font-bold dark:text-gray-200">
                                     {{ auth()->user()->getNickname() }}
-                                    <x-admin-verified-icon />
+                                    <x-verified-icon type="admin" />
                                 </li>
                             @endrole
                             @role('operator')
                                 <li
                                     class="lg:hidden flex items-center text-base text-gray-800 mx-4 lg:mx-3 xl:mx-4 lg:group-hover:font-bold lg:font-medium  font-bold dark:text-gray-200">
                                     {{ auth()->user()->getNickname() }}
-                                    <x-operator-verified-icon />
+                                    <x-verified-icon type="operator" />
                                 </li>
                             @endrole
                             @unlessrole(['operator', 'admin'])
@@ -60,7 +60,7 @@
                                     <li
                                         class="lg:hidden flex items-center text-base text-gray-800 mx-4 lg:mx-3 xl:mx-4 lg:group-hover:font-bold lg:font-medium  font-bold dark:text-gray-200">
                                         {{ auth()->user()->getNickname() }}
-                                        <x-registrant-verified-icon />
+                                        <x-verified-icon type="registrant" />
                                     </li>
                                 @else
                                     <li class="group">
@@ -105,20 +105,20 @@
                                                 @role('admin')
                                                     <span class="flex items-center text-gray-800 dark:text-gray-200">
                                                         {{ auth()->user()->getNickname() }}
-                                                        <x-admin-verified-icon />
+                                                        <x-verified-icon type="admin" />
                                                     </span>
                                                 @endrole
                                                 @role('operator')
                                                     <span class="flex items-center text-gray-800 dark:text-gray-200">
                                                         {{ auth()->user()->getNickname() }}
-                                                        <x-operator-verified-icon />
+                                                        <x-verified-icon type="operator" />
                                                     </span>
                                                 @endrole
                                                 @unlessrole(['operator', 'admin'])
                                                     @if (auth()->user()->has_verified == 1)
                                                         <span class="flex items-center text-gray-800 dark:text-gray-200">
                                                             {{ auth()->user()->getNickname() }}
-                                                            <x-registrant-verified-icon />
+                                                            <x-verified-icon type="registrant" />
                                                         </span>
                                                     @else
                                                         {{ auth()->user()->getNickname() }}

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BiodataExportController;
 use App\Http\Controllers\BiodataPdfExportController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
@@ -27,7 +28,7 @@ Route::middleware(['auth'])->group(function () {
         Route::put('biodata/picture', 'pictureUpdate')->name('biodata.picture.update');
     });
 
-    Route::controller(BiodataPdfExportController::class)->group(function () {
+    Route::controller(BiodataExportController::class)->group(function () {
         Route::get('biodata/{identifier}', 'preview')->name('biodata.export.preview');
         Route::get('biodata/{identifier}/{code}/manual', 'manual')->name('biodata.export.manual');
         Route::get('biodata/{identifier}/{code}/auto', 'auto')->name('biodata.export.auto');
@@ -40,4 +41,4 @@ Route::middleware(['auth'])->group(function () {
     Route::get('help', RegistrantHelperController::class)->name('help.index');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
