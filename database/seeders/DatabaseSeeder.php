@@ -26,8 +26,9 @@ class DatabaseSeeder extends Seeder
 
         // Pendaftar
         $this->call([
-            BiodataSeeder::class,
-            RegistrantActivitySeeder::class,
+            // BiodataSeeder::class,
+            // RegistrantActivitySeeder::class,
+            ScheduleSeeder::class,
         ]);
     }
 }

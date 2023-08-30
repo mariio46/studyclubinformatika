@@ -69,9 +69,23 @@
     @hasanyrole(['operator', 'admin'])
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
             <li>
-                <x-side-navigation-link href="{{ route('registrant.index') }}">
-                    <x-svg class="w-5 h-5" svg="registrant-list" fill="none" strokeWidth="1.5" stroke="currentColor" />
-                    Registrant List
+                <x-side-navigation-link class="justify-between" href="{{ route('registrant.index') }}">
+                    <div class="flex gap-x-1">
+                        <x-svg class="w-5 h-5" svg="registrant-list" fill="none" strokeWidth="1.5"
+                            stroke="currentColor" />
+                        Registrant List
+                    </div>
+                    <x-verified-icon type="operator" />
+                </x-side-navigation-link>
+
+                <x-side-navigation-link class="justify-between" href="{{ route('schedule.index') }}">
+                    {{-- <x-svg class="w-5 h-5" svg="schedule" fill="none" strokeWidth="1.5" stroke="currentColor" />
+                    Schedules --}}
+                    <div class="flex gap-x-1">
+                        <x-svg class="w-5 h-5" svg="schedule" fill="none" strokeWidth="1.5" stroke="currentColor" />
+                        Schedules
+                    </div>
+                    <x-verified-icon type="operator" />
                 </x-side-navigation-link>
             </li>
         </ul>
@@ -79,9 +93,12 @@
     @role('admin')
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
             <li>
-                <x-side-navigation-link href="{{ route('operator.index') }}">
-                    <x-svg class="w-5 h-5" svg="operator-list" fill="none" strokeWidth="1.5" stroke="currentColor" />
-                    Operator List
+                <x-side-navigation-link class="justify-between" href="{{ route('operator.index') }}">
+                    <div class="flex gap-x-1">
+                        <x-svg class="w-5 h-5" svg="operator-list" fill="none" strokeWidth="1.5" stroke="currentColor" />
+                        Operator List
+                    </div>
+                    <x-verified-icon type="admin" />
                 </x-side-navigation-link>
             </li>
         </ul>

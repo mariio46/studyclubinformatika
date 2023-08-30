@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Storage;
 
 class RegistrantListController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['role:operator|admin']);
+    }
+
     public function index(Request $request)
     {
         if ($request->keyword) {
@@ -27,13 +33,14 @@ class RegistrantListController extends Controller
                 ->select('id', 'name', 'username', 'picture', 'email', 'created_at', 'has_verified')
                 ->doesntHave('roles')
                 ->withCount('biodata')
+                // ->take(4)
                 ->get();
         }
         $data = RegistrationStatus::query()->where('id', 1)->select('status')->first()->status;
 
         return view('operator.registrant.index', [
             'open' => $data == 1 ? true : false,
-            'registrants' => RegistrantResource::collection($registrants),
+            'collections' => RegistrantResource::collection($registrants),
         ]);
     }
 
@@ -64,7 +71,7 @@ class RegistrantListController extends Controller
         }
         User::destroy($user->id);
 
-        return back()->with('status-success', $user->getNickname().' has been deleted!');
+        return back()->with('status-success', $user->getNickname() . ' has been deleted!');
     }
 
     public function deleteUnverified()
