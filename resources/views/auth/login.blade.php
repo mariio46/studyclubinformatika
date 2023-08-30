@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout title="Login">
     <x-slot:header>
         <div class="mt-10">
             <x-application-logo class="w-auto h-7 sm:h-8 text-black dark:text-white" />

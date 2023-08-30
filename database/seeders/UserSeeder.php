@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
         // Admin
         User::create([
             'name' => 'Mario',
-            'picture' => 'image/default/avatar/Helper(13).png',
+            'picture' => 'image/default/avatar/Helper(12).png',
             'has_verified' => 1,
             'username' => '@mario46_',
             'email' => 'mariomad2296@gmail.com',
@@ -95,7 +95,7 @@ class UserSeeder extends Seeder
         // Pengurus
         User::create([
             'name' => $name = 'Ahsan Mubarak',
-            'picture' => 'image/default/avatar/Helper(11).png',
+            'picture' => 'image/default/avatar/Helper(10).png',
             'whatsapp' => '082154838046',
             'has_verified' => 1,
             'username' => '@'.strtolower(Str::of($name)->explode(' ')->get(0)).mt_rand(0, 99999),
@@ -121,7 +121,7 @@ class UserSeeder extends Seeder
         // Pengurus
         User::create([
             'name' => $name = 'Putri',
-            'picture' => 'image/default/avatar/Helper(12).png',
+            'picture' => 'image/default/avatar/Helper(11).png',
             'whatsapp' => '082154838046',
             'has_verified' => 1,
             'username' => '@'.strtolower(Str::of($name)->explode(' ')->get(0)).mt_rand(0, 99999),

@@ -12,7 +12,7 @@ class BaseLayouts extends Component
 
     public function __construct($title = null)
     {
-        $this->title = $title ?? 'Dashboard';
+        $this->title = $title;
     }
 
     public function render(): View|Closure|string

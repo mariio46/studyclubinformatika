@@ -1,4 +1,4 @@
-<x-dashboard.header title="Registration Information" description="2">
+<x-header title="Registration Information" description="2">
     <x-slot name="header">
         @if ($open)
             <span class="text-green-400 animate-pulse">
@@ -16,13 +16,13 @@
             </span>
         @endif
     </x-slot>
-</x-dashboard.header>
+</x-header>
 
 @hasanyrole('operator|admin')
     <div class="flex flex-wrap items-center gap-2 mt-3">
         @role('admin')
             <div class="">
-                <x-primary-link href="{{ route('registrant.index') }}" class="">{{ __('More info') }}</x-primary-link>
+                <x-primary-link href="{{ route('operator.index') }}" class="">{{ __('More info') }}</x-primary-link>
             </div>
         @endrole
 

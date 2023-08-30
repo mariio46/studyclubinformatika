@@ -1,11 +1,11 @@
 <x-auth-layout title="Tutorials">
     <x-work-space>
         <div class="space-y-3">
-            <x-dashboard.header title="How to download your biodata on any device" description="1">
+            <x-header title="How to download your biodata on any device" description="1">
                 <x-slot:header>
                     here's some tutorials, in case you need help.
                 </x-slot:header>
-            </x-dashboard.header>
+            </x-header>
 
             <div class="px-2">
                 <x-accordion name="tutorial">

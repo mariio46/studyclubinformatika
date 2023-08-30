@@ -1,11 +1,11 @@
 <x-auth-layout title="Help">
     <x-work-space>
         <div class="space-y-6">
-            <x-dashboard.header title="Helper" description="1">
+            <x-header title="Helper" description="1">
                 <x-slot:header>
                     if you got problem or some bugs, please capture it and contact our operators.
                 </x-slot:header>
-            </x-dashboard.header>
+            </x-header>
             <div class="flex flex-wrap justify-evenly gap-5">
                 @foreach ($operators as $item)
                     <div class="w-full max-w-[16rem] dark:bg-transparent p-5">

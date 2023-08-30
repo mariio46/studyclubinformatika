@@ -170,6 +170,70 @@
                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
         @break
 
+        @case('schedule')
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
+            <path d="M16 3l0 4"></path>
+            <path d="M8 3l0 4"></path>
+            <path d="M4 11l16 0"></path>
+            <path d="M8 15h2v2h-2z"></path>
+        @break
+
+        @case('add-schedule')
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M12.5 21h-6.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v5"></path>
+            <path d="M16 3v4"></path>
+            <path d="M8 3v4"></path>
+            <path d="M4 11h16"></path>
+            <path d="M16 19h6"></path>
+            <path d="M19 16v6"></path>
+        @break
+
+        @case('stacked-list')
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path
+                d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z">
+            </path>
+            <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
+        @break
+
+        @case('activate')
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M13 3l0 7l6 0l-8 11l0 -7l-6 0l8 -11"></path>
+        @break
+
+        @case('deactivate')
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M3 3l18 18"></path>
+            <path d="M15.212 15.21l-4.212 5.79v-7h-6l3.79 -5.21m1.685 -2.32l2.525 -3.47v6m1 1h5l-2.104 2.893"></path>
+        @break
+
+        @case('avatar')
+            <path
+                d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
+        @break
+
+        @case('checklist')
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M5 12l5 5l10 -10"></path>
+        @break
+
+        @case('unchecklist')
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M18 6l-12 12"></path>
+            <path d="M6 6l12 12"></path>
+        @break
+
+        @case('edit')
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M3 21h4l13 -13a1.5 1.5 0 0 0 -4 -4l-13 13v4"></path>
+            <path d="M14.5 5.5l4 4"></path>
+            <path d="M12 8l-5 -5l-4 4l5 5"></path>
+            <path d="M7 8l-1.5 1.5"></path>
+            <path d="M16 12l5 5l-4 4l-5 -5"></path>
+            <path d="M16 17l-1.5 1.5"></path>
+        @break
+
         @default
             <path stroke-linecap="round" stroke-linejoin="round"
                 d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />

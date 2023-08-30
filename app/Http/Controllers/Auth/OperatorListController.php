@@ -3,17 +3,22 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateOperatorRequest;
 use App\Http\Resources\OperatorResource;
 use App\Http\Resources\OperatorSingleResource;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
 
 class OperatorListController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['role:admin']);
+    }
+
     public function index(Request $request)
     {
         if ($request->keyword) {
@@ -30,7 +35,7 @@ class OperatorListController extends Controller
         }
 
         return view('admin.operator.index', [
-            'operators' => OperatorResource::collection($operators),
+            'collections' => OperatorResource::collection($operators),
         ]);
     }
 
@@ -44,21 +49,9 @@ class OperatorListController extends Controller
         ]);
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(CreateOperatorRequest $request): RedirectResponse
     {
-        $request->validateWithBag('operatorDelition', [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Password::defaults()],
-        ]);
-        $user = User::create([
-            'has_verified' => 1,
-            'name' => $name = $request->name,
-            'username' => strtolower(Str::of($name)->explode(' ')->get(0)).strtolower(mt_rand(0, 99999)),
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-        $user->assignRole('operator');
+        User::storeOperator($request->validated());
 
         return back()->with('status', 'Operator has been added!');
     }

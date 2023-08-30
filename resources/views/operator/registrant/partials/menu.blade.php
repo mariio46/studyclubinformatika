@@ -14,9 +14,9 @@
         </a>
     </li>
 </ul>
-@if ($registrants->first())
+@if ($collections->first())
     <div class="py-2 text-sm text-gray-700 dark:text-gray-200 border-t border-t-gray-200 dark:border-gray-700">
-        @if ($registrants->where('has_verified', 0)->first())
+        @if ($collections->where('has_verified', 0)->first())
             <form action="{{ route('registrant.unverified.delete') }}" method="post" class="">
                 @csrf
                 @method('delete')

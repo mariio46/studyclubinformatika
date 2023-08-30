@@ -24,6 +24,7 @@ class RegistrantPictureUpdateRequest extends FormRequest
         return [
             // 'picture' => 'required|image|mimes:jpg,jpeg|file|max:1024', // max 1mb
             'picture' => ['required', 'image', 'mimes:jpg,jpeg,png', 'file', 'max:1024'], // max 1mb
+            'oldPicture' => ['nullable'], // max 1mb
         ];
     }
 }

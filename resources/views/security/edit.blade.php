@@ -11,5 +11,4 @@
             </div>
         </x-work-space> --}}
     </div>
-    {{-- <x-success-notification :status="session('status')" /> --}}
 </x-auth-layout>

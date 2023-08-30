@@ -14,6 +14,7 @@ use App\Http\Controllers\Auth\RegistrantBiodataExportController;
 use App\Http\Controllers\Auth\RegistrantListController;
 use App\Http\Controllers\Auth\RegistrantsTableExportController;
 use App\Http\Controllers\Auth\RegistrationStatusController;
+use App\Http\Controllers\Auth\ScheduleController;
 use App\Http\Controllers\Auth\VerifiedRegistrantController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
@@ -49,6 +50,18 @@ Route::middleware(['role:operator|admin'])->group(function () {
     Route::controller(VerifiedRegistrantController::class)->group(function () {
         Route::put('verify/{user}', 'verify')->name('registrant.verify');
         Route::put('unverify/{user}', 'unverify')->name('registrant.unverify');
+    });
+
+    Route::controller(ScheduleController::class)->group(function () {
+        Route::get('schedule', 'index')->name('schedule.index');
+        Route::post('schedule', 'store')->name('schedule.store');
+        Route::get('schedule/{schedule}', 'edit')->name('schedule.edit');
+        Route::put('schedule/{schedule}', 'update')->name('schedule.update');
+
+        Route::put('schdule/activate/{schedule}', 'activate')->name('schedule.activate');
+        Route::put('schdule/deactivate/{schedule}', 'deactivate')->name('schedule.deactivate');
+
+        route::delete('schedule/{schedule}', 'delete')->name('schedule.delete');
     });
 });
 

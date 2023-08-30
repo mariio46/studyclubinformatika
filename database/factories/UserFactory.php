@@ -16,7 +16,7 @@ class UserFactory extends Factory
         return [
             'name' => $name = fake()->name(),
             'has_verified' => 0,
-            'picture' => 'image/default/avatar/Helper(6).png',
+            'picture' => null,
             'username' => strtolower(Str::of($name)->explode(' ')->get(0)).User::getRegistrationCode(),
             'email' => strtolower(Str::of($name)->explode(' ')->get(0)).mt_rand(0, 9999).'@gmail.com',
             'email_verified_at' => now(),

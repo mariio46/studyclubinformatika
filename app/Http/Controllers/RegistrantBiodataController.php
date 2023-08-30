@@ -11,8 +11,6 @@ use App\Models\RegistrationStatus;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 
 class RegistrantBiodataController extends Controller
 {
@@ -25,46 +23,19 @@ class RegistrantBiodataController extends Controller
 
     public function index()
     {
-        $religions = collect([
-            ['name' => 'Islam'],
-            ['name' => 'Kristen'],
-            ['name' => 'Katholik'],
-            ['name' => 'Hindu'],
-            ['name' => 'Budha'],
-            ['name' => 'Konghucu'],
-        ]);
-        $genders = collect([
-            ['name' => 'Laki-laki'],
-            ['name' => 'Perempuan'],
-        ]);
-        $vehicleStatus = collect([
-            ['name' => 'Punya (Mobil)'],
-            ['name' => 'Punya (Motor)'],
-            ['name' => 'Tidak Punya'],
-        ]);
-
         return view('biodata.edit', [
             'biodata' => auth()->user()->biodata,
             'user' => auth()->user(),
-            'religions' => $religions,
-            'genders' => $genders,
-            'vehicleStatus' => $vehicleStatus,
+            'religions' => User::religions(),
+            'genders' => User::genders(),
+            'vehicleStatus' => User::vehicles(),
             'open' => $this->open,
         ]);
     }
 
     public function pictureUpdate(RegistrantPictureUpdateRequest $request): RedirectResponse
     {
-        if ($request->file('picture')) {
-            if ($request->oldPicture) {
-                Storage::delete($request->oldPicture);
-            }
-            // Custom Name File Store
-            $file = $request->file('picture');
-            $orginalExtension = $file->getClientOriginalExtension();
-        }
-        $picture = $file->storeAs('image/profile-picture', 'photo-by'.'-'.Auth::user()->username.'-'.mt_rand(0, 99999).'.'.$orginalExtension);
-        User::where('id', Auth::user()->id)->update(['picture' => $picture]);
+        User::updatePicture($request->validated());
 
         return back()->with('status-success', 'Picture updated');
     }

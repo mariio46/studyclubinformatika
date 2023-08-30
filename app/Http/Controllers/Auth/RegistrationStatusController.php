@@ -7,6 +7,11 @@ use App\Models\RegistrationStatus;
 
 class RegistrationStatusController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['role:operator|admin']);
+    }
+
     public function open()
     {
         RegistrationStatus::where('id', 1)->update([

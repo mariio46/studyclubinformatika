@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Resources\RegistrantSingleResource;
 use App\Models\RegistrantActivity;
 use App\Models\RegistrationStatus;
+use App\Models\Schedule;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 
-class BiodataPdfExportController extends Controller
+class BiodataExportController extends Controller
 {
     public $open;
 
@@ -24,7 +25,10 @@ class BiodataPdfExportController extends Controller
                 ->withRegistrantDetails($identifier)
                 ->firstOr(callback: fn () => abort(504));
 
-            return view('pdf.registrant.preview-biodata', ['user' => new RegistrantSingleResource($user)]);
+            return view('pdf.registrant.preview-biodata', [
+                'user' => new RegistrantSingleResource($user),
+                'schedule' => Schedule::whereNotNull('active_in')->select('id', 'name', 'location', 'date_start', 'date_end', 'time')->firstOrFail(),
+            ]);
         }
 
         return back()->with('status-failed', 'Sorry cannot download or preview biodata, registration is close now');
