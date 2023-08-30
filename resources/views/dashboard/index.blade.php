@@ -2,13 +2,13 @@
     <div class="space-y-3 min-[1440px]:space-y-3">
         @hasanyrole(['operator', 'admin'])
             <x-work-space>
-                <x-dashboard.header title="Information" description="1">
+                <x-header title="Information" description="1">
                     <x-slot:header>
                         <span class="text-green-500">
                             {{ 'Welcome ' .auth()->user()->getNickname() .', you are ' .auth()->user()->roles->pluck('name')[0] }}.
                         </span>
                     </x-slot:header>
-                </x-dashboard.header>
+                </x-header>
             </x-work-space>
         @endhasanyrole
 
@@ -30,13 +30,13 @@
             <div class="col-span-4">
                 <x-work-space>
                     @hasanyrole(['operator', 'admin'])
-                        <x-dashboard.header title="Activity Progress" description="5">
+                        <x-header title="Activity Progress" description="5">
                             <x-slot:header>
                                 <span class="text-green-500">
                                     Check registrants progress.
                                 </span>
                             </x-slot:header>
-                        </x-dashboard.header>
+                        </x-header>
                         <div class="flex items-center">
                             <x-primary-link class="mt-2" href="{{ route('timeline.index') }}">check</x-primary-link>
                         </div>

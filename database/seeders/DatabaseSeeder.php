@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             BiodataSeeder::class,
             RegistrantActivitySeeder::class,
+            ScheduleSeeder::class,
         ]);
     }
 }

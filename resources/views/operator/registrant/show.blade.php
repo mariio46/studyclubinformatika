@@ -2,11 +2,11 @@
     <x-work-space>
         <div class="space-y-6">
             <div>
-                <x-dashboard.header title="{{ $registrant->name . ' Information' }}" description="1">
+                <x-header title="{{ $registrant->name . ' Information' }}" description="1">
                     <x-slot:header>
                         this is a full information of {{ $registrant->getNickname() }}.
                     </x-slot:header>
-                </x-dashboard.header>
+                </x-header>
                 <div class="grid grid-cols-1 lg:grid-cols-12 space-y-3 lg:space-y-0 lg:space-x-3 mt-6">
                     <div class="col-span-4 min-[1440px]:col-span-3 lg:mb-5 min-[1440px]:mb-0">
                         <div class="flex justify-center lg:mt-7">
@@ -139,15 +139,6 @@
                         </div>
                     </div>
                 @endisset
-                {{-- @else
-                    <x-dashboard.header title="Biodata Infomartion" description="3">
-                        <x-slot:header>
-                            <span class="text-red-400">
-                                {{ 'this registrant still not have biodata!' }}
-                            </span>
-                        </x-slot:header>
-                    </x-dashboard.header>
-                @endisset --}}
             </div>
         </div>
     </x-work-space>

@@ -1,4 +1,4 @@
-<x-dashboard.header title="Registration Information" description="2">
+<x-header title="Registration Information" description="2">
     <x-slot name="header">
         @if ($open)
             <span class="text-green-400 animate-pulse">
@@ -16,7 +16,7 @@
             </span>
         @endif
     </x-slot>
-</x-dashboard.header>
+</x-header>
 
 @hasanyrole('operator|admin')
     <div class="flex flex-wrap items-center gap-2 mt-3">

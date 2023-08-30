@@ -1,9 +1,9 @@
 <section>
-    <x-dashboard.header title="Update Password" description="1">
+    <x-header title="Update Password" description="1">
         <x-slot name="header">
             Ensure your account is using a long, random password to stay secure.
         </x-slot>
-    </x-dashboard.header>
+    </x-header>
 
     <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-6">
         @csrf

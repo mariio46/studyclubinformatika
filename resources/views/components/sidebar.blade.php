@@ -33,7 +33,13 @@
                 <x-sidebar-link :href="route('registrant.index')" :active="request()->routeIs('registrant.*')" svg="registrant-list">
                     registrant list
                     <x-slot:mark>
-                        <x-operator-verified-icon />
+                        <x-verified-icon type="operator" />
+                    </x-slot:mark>
+                </x-sidebar-link>
+                <x-sidebar-link :href="route('schedule.index')" :active="request()->routeIs('schedule.*')" svg="schedule">
+                    Schedules
+                    <x-slot:mark>
+                        <x-verified-icon type="operator" />
                     </x-slot:mark>
                 </x-sidebar-link>
             </ul>
@@ -43,7 +49,7 @@
                 <x-sidebar-link :href="route('operator.index')" :active="request()->routeIs('operator.*')" svg="operator-list">
                     operator list
                     <x-slot:mark>
-                        <x-admin-verified-icon />
+                        <x-verified-icon type="admin" />
                     </x-slot:mark>
                 </x-sidebar-link>
             </ul>

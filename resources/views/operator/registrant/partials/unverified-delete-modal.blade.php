@@ -3,13 +3,13 @@
         @csrf
         @method('delete')
 
-        <x-dashboard.header title="Are you sure you want to delete unverified registrants?" description="11">
+        <x-header title="Are you sure you want to delete unverified registrants?" description="11">
             <x-slot:header>
                 Once you delete unverified registrants, all of its resources and data will be permanently deleted.
                 Please
                 enter your password to confirm you would like to permanently delete unverified registrants.
-                </x-slot>
-        </x-dashboard.header>
+            </x-slot:header>
+        </x-header>
 
         <div class="mt-6">
             <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />

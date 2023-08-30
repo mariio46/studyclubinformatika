@@ -19,11 +19,11 @@
             @hasanyrole(['operator', 'admin'])
                 <div class="space-y-3 min-[1440px]:space-y-3">
                     <div class="flex w-full justify-between">
-                        <x-dashboard.header title="Profile " description="1">
+                        <x-header title="Profile " description="1">
                             <x-slot:header>
                                 update your profile information.
                             </x-slot:header>
-                        </x-dashboard.header>
+                        </x-header>
                     </div>
                     <div class="grid grid-cols-1 lg:grid-cols-12 space-y-3 lg:space-y-0 lg:space-x-3 mt-6">
                         <div class="col-span-4 min-[1440px]:col-span-3 lg:mb-5 min-[1440px]:mb-0">
@@ -55,7 +55,7 @@
             @else
                 <div class="space-y-3 min-[1440px]:space-y-3">
                     <div class="flex w-full justify-between">
-                        <x-dashboard.header title="Profile and Biodata" description="2">
+                        <x-header title="Profile and Biodata" description="2">
                             @if ($open)
                                 <x-slot:header>
                                     update your profile & biodata information to meet the registration requirements.
@@ -103,7 +103,7 @@
                                     </span>
                                 </x-slot:header>
                             @endif
-                        </x-dashboard.header>
+                        </x-header>
                         @if ($user->has_verified == 0 && $open)
                             <x-header-menu-dropdown placement="bottom-end">
                                 <x-slot:contents>
@@ -132,13 +132,13 @@
                         @isset($biodata)
                             @include('biodata.partials.registrant.update-biodata-information')
                         @else
-                            <x-dashboard.header title="Biodata" description="3">
+                            <x-header title="Biodata" description="3">
                                 <x-slot:header>
                                     <span class="text-green-400">
                                         {{ 'you need biodata for the next step!' }}
                                     </span>
                                 </x-slot:header>
-                            </x-dashboard.header>
+                            </x-header>
                             <div class="flex items-center gap-4 mt-2">
                                 @include('biodata.partials.registrant.store-biodata-information')
                             </div>

@@ -1,11 +1,11 @@
 <section class="space-y-6">
 
-    <x-dashboard.header title="Delete Account" description="2">
+    <x-header title="Delete Account" description="2">
         <x-slot name="header">
             Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting
             your account, please download any data or information that you wish to retain.
         </x-slot>
-    </x-dashboard.header>
+    </x-header>
     <div class="flex items-center gap-4 max-lg:justify-end">
         <x-danger-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">
             {{ __('Delete Account') }}</x-danger-button>
@@ -16,12 +16,12 @@
             @csrf
             @method('delete')
 
-            <x-dashboard.header title="Are you sure you want to delete your account?" description="3">
+            <x-header title="Are you sure you want to delete your account?" description="3">
                 <x-slot name="header">
                     Once your account is deleted, all of its resources and data will be permanently deleted. Please
                     enter your password to confirm you would like to permanently delete your account.
                 </x-slot>
-            </x-dashboard.header>
+            </x-header>
 
             <div class="mt-6">
                 <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />

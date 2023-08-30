@@ -88,25 +88,47 @@
             @hasanyrole(['operator', 'admin'])
                 <div class="border border-gray-200 dark:border-gray-700 w-full"></div>
                 <li>
-                    <x-side-navigation-link mode href="{{ route('registrant.index') }}">
-                        <x-svg class="w-5 h-5" svg="registrant-list" fill="none" strokeWidth="1.5"
+                    <x-side-navigation-link class="justify-between" mode href="{{ route('registrant.index') }}">
+                        {{-- <x-svg class="w-5 h-5" svg="registrant-list" fill="none" strokeWidth="1.5"
                             stroke="currentColor" />
                         <span class="flex items-center whitespace-nowrap ml-1 gap-1">
                             Registrant List
-                            <x-operator-verified-icon />
-                        </span>
+                            <x-verified-icon type="operator" />
+                        </span> --}}
+                        <div class="flex gap-x-1">
+                            <x-svg class="w-5 h-5" svg="registrant-list" fill="none" strokeWidth="1.5"
+                                stroke="currentColor" />
+                            Registrant List
+                        </div>
+                        <div class="mr-2">
+                            <x-verified-icon type="operator" />
+                        </div>
+                    </x-side-navigation-link>
+                </li>
+                <li>
+                    <x-side-navigation-link class="justify-between" mode href="{{ route('schedule.index') }}">
+                        <div class="flex gap-x-1">
+                            <x-svg class="w-5 h-5" svg="schedule" fill="none" strokeWidth="1.5" stroke="currentColor" />
+                            Schedules
+                        </div>
+                        <div class="mr-2">
+                            <x-verified-icon type="operator" />
+                        </div>
                     </x-side-navigation-link>
                 </li>
             @endhasanyrole
             @hasrole('admin')
                 <div class="border border-gray-200 dark:border-gray-700 w-full"></div>
                 <li>
-                    <x-side-navigation-link mode href="{{ route('operator.index') }}">
-                        <x-svg class="w-5 h-5" svg="operator-list" fill="none" />
-                        <span class="flex items-center whitespace-nowrap ml-1 gap-1">
+                    <x-side-navigation-link class="justify-between" mode href="{{ route('operator.index') }}">
+                        <div class="flex gap-x-1">
+                            <x-svg class="w-5 h-5" svg="operator-list" fill="none" strokeWidth="1.5"
+                                stroke="currentColor" />
                             Operator List
-                            <x-admin-verified-icon />
-                        </span>
+                        </div>
+                        <div class="mr-2">
+                            <x-verified-icon type="admin" />
+                        </div>
                     </x-side-navigation-link>
                 </li>
             @endhasrole
@@ -218,7 +240,7 @@
                             stroke="currentColor" />
                         <span class="flex items-center whitespace-nowrap ml-1 gap-1">
                             Registrant List
-                            <x-operator-verified-icon />
+                            <x-verified-icon type="operator" />
                         </span>
                     </x-side-navigation-link>
                 </li>
@@ -230,7 +252,7 @@
                         <x-svg class="w-5 h-5" svg="operator-list" fill="none" />
                         <span class="flex items-center whitespace-nowrap ml-1 gap-1">
                             Operator List
-                            <x-admin-verified-icon />
+                            <x-verified-icon type="admin" />
                         </span>
                     </x-side-navigation-link>
                 </li>

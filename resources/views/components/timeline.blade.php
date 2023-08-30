@@ -1,7 +1,7 @@
 <x-accordion name="timeline">
     <x-accordion-head heading="timline-heading" body="timline-body" show="true"
         class="flex items-center justify-between w-full font-medium text-left text-gray-500 focus:ring-4 focus:ring-white dark:focus:ring-0 dark:border-gray-700 dark:text-gray-400 hover:bg-white dark:hover:bg-transparent">
-        <x-dashboard.header title="Registration Progress" description="2">
+        <x-header title="Registration Progress" description="2">
             <x-slot:header>
                 @isset($user->registration_completed)
                     <span class="text-gray-900 dark:text-gray-400">
@@ -13,7 +13,7 @@
                     </span>
                 @endisset
             </x-slot:header>
-        </x-dashboard.header>
+        </x-header>
     </x-accordion-head>
     <x-accordion-body heading="timline-heading" body="timline-body" class="mt-5">
         <ol class="relative border-l border-gray-200 dark:border-gray-700">

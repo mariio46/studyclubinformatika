@@ -2,11 +2,11 @@
     <form action="{{ route('operator.forget.password') }}" method="POST" class="space-y-3 p-6">
         @csrf
         @method('put')
-        <x-dashboard.header title="Operator Forget Password" description="10">
+        <x-header title="Operator Forget Password" description="10">
             <x-slot:header>
                 This is a page where only admin can change operator password.
-                </x-slot>
-        </x-dashboard.header>
+            </x-slot:header>
+        </x-header>
         <input type="hidden" name="userId" value="{{ $operator->id }}">
         <!-- Password -->
         <div class="mt-4">

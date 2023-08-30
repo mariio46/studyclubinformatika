@@ -11,8 +11,9 @@
 
 <body>
     @php
+        use Carbon\Carbon;
         $code = mt_rand(9999, 99999);
-        \Carbon\Carbon::setlocale('id');
+        Carbon::setlocale('id');
     @endphp
     <div class="main">
         <div class="container">
@@ -84,7 +85,7 @@
                             <th class="title">Tempat, Tanggal Lahir</th>
                             <td class="colon">:</td>
                             <td class="body ">
-                                {{ $user->biodata->city . ', ' . \Carbon\Carbon::parse($user->biodata->birthday)->translatedFormat('d F Y') }}
+                                {{ $user->biodata->city . ', ' . Carbon::parse($user->biodata->birthday)->translatedFormat('d F Y') }}
                             </td>
                         </tr>
                         <tr>
@@ -181,7 +182,7 @@
                                     alt="{{ $user->name }}" style="width: 150px">
                             </th>
                             <td class="sign-mark">
-                                <p>Parepare, {{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}</p>
+                                <p>Parepare, {{ Carbon::now()->translatedFormat('d F Y') }}</p>
                                 <p>Calon Peserta,</p>
                                 <br><br><br><br>
                                 <p class="name">
@@ -231,7 +232,7 @@
                             <th class="title">Tempat, Tanggal Lahir</th>
                             <td class="colon">:</td>
                             <td class="body ">
-                                {{ $user->biodata->city . ', ' . \Carbon\Carbon::parse($user->biodata->birthday)->translatedFormat('d F Y') }}
+                                {{ $user->biodata->city . ', ' . Carbon::parse($user->biodata->birthday)->translatedFormat('d F Y') }}
                             </td>
                         </tr>
                         <tr>
@@ -279,7 +280,7 @@
                     <table>
                         <tr>
                             <td class="sign-mark">
-                                <p>Parepare, {{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}</p>
+                                <p>Parepare, {{ Carbon::now()->translatedFormat('d F Y') }}</p>
                                 <p>Calon Peserta,</p>
                                 <div class="materai">
                                     <p>Materai</p>
@@ -304,7 +305,7 @@
                 </div>
                 <div class="date">
                     <span>
-                        Parepare, {{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}
+                        Parepare, {{ Carbon::now()->translatedFormat('d F Y') }}
                     </span>
                 </div>
                 <div class="table-5">
@@ -341,21 +342,21 @@
                                 <th class="title">Hari / Tanggal</th>
                                 <td class="colon">:</td>
                                 <td class="body ">
-                                    Jum'at - Minggu / 19 - 21 Mei 2023
+                                    {{ $schedule->getFullDate() }}
                                 </td>
                             </tr>
                             <tr>
                                 <th class="title">Pukul</th>
                                 <td class="colon">:</td>
                                 <td class="body ">
-                                    16.00 WITA
+                                    {{ Carbon::parse($schedule->time)->translatedFormat('H:i') . ' WITA' }}
                                 </td>
                             </tr>
                             <tr>
                                 <th class="title">Tempat</th>
                                 <td class="colon">:</td>
                                 <td class="body ">
-                                    Lowita (tempat bisa saja berubah)
+                                    {{ $schedule->location }}
                                 </td>
                             </tr>
                         </table>
@@ -378,7 +379,7 @@
                                 <th class="title">Tempat, Tanggal Lahir</th>
                                 <td class="colon">:</td>
                                 <td class="body ">
-                                    {{ $user->biodata->city . ', ' . \Carbon\Carbon::parse($user->biodata->birthday)->translatedFormat('d F Y') }}
+                                    {{ $user->biodata->city . ', ' . Carbon::parse($user->biodata->birthday)->translatedFormat('d F Y') }}
                                 </td>
                             </tr>
                             <tr>
