@@ -6,6 +6,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Scout\Searchable;
@@ -89,5 +92,61 @@ class User extends Authenticatable
                 'fullname', 'whatsapp', 'sex', 'religion', 'city', 'birthday', 'address', 'university', 'faculty',
                 'major', 'semester', 'father', 'fatherWhatsapp', 'mother', 'motherWhatsapp', 'vehicle', 'organizationsExp', 'goals',
             ])->firstOr(callback: fn () => abort(504))]);
+    }
+
+    public static function storeOperator($string)
+    {
+        $user = User::create([
+            'has_verified' => 1,
+            'name' => $string['name'],
+            'username' => strtolower(Str::of($string['name'])->explode(' ')->get(0)).strtolower(mt_rand(11111, 99999)),
+            'email' => $string['email'],
+            'password' => Hash::make($string['password']),
+        ]);
+
+        $user->assignRole('operator');
+    }
+
+    public static function religions()
+    {
+        return collect([
+            ['name' => 'Islam'],
+            ['name' => 'Kristen'],
+            ['name' => 'Katholik'],
+            ['name' => 'Hindu'],
+            ['name' => 'Budha'],
+            ['name' => 'Konghucu'],
+        ]);
+    }
+
+    public static function genders()
+    {
+        return collect([
+            ['name' => 'Laki-laki'],
+            ['name' => 'Perempuan'],
+        ]);
+    }
+
+    public static function vehicles()
+    {
+        return collect([
+            ['name' => 'Punya (Mobil)'],
+            ['name' => 'Punya (Motor)'],
+            ['name' => 'Tidak Punya'],
+        ]);
+    }
+
+    public static function updatePicture($string)
+    {
+        if ($string['picture']) {
+            if ($string['oldPicture']) {
+                Storage::delete($string['oldPicture']);
+            }
+            // Custom Name File Store
+            $file = $string['picture'];
+            $orginalExtension = $file->getClientOriginalExtension();
+        }
+        $picture = $file->storeAs('image/profile-picture', 'photo-by'.'-'.Auth::user()->username.'-'.mt_rand(0, 99999).'.'.$orginalExtension);
+        User::where('id', Auth::user()->id)->update(['picture' => $picture]);
     }
 }

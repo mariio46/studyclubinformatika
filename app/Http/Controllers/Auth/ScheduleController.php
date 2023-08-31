@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateScheduleRequest;
+use App\Http\Requests\UpdateScheduleRequest;
 use App\Models\Schedule;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ScheduleController extends Controller
 {
@@ -14,42 +16,45 @@ class ScheduleController extends Controller
         $this->middleware(['role:operator|admin']);
     }
 
-    public function index()
+    public function index(): View
     {
-        return view('operator.schedule.index', [
-            'collections' => Schedule::select('id', 'name', 'location', 'identifier', 'time', 'date_start', 'date_end', 'active_in')->get(),
-        ]);
+        $collections = Schedule::select('id', 'name', 'location', 'identifier', 'time', 'date_start', 'date_end', 'active_in')->get();
+
+        return view('operator.schedule.index', compact('collections'));
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(CreateScheduleRequest $request): RedirectResponse
     {
-        $schedule = $request->validateWithBag('scheduleDelition', [
-            'name'          => ['required', 'string', 'min:5', 'max:255'],
-            'location'      => ['required', 'string', 'min:5', 'max:255'],
-            'time'          => ['required', 'date_format:H:i'],
-            'date_start'    => ['required', 'date'],
-            'date_end'      => ['required', 'date', 'after:date_start'],
-        ]);
+        Schedule::create($request->validated());
 
-        Schedule::create($schedule);
-        return back()->with('status', 'Schedule has been added!');
+        return back()->with('status-success', 'Schedule has been added!');
     }
 
-    public function show(Schedule $schedule)
+    public function edit(Schedule $schedule): View
     {
-        return $schedule->name;
+        return view('operator.schedule.edit', compact('schedule'));
+    }
+
+    public function update(UpdateScheduleRequest $request, Schedule $schedule): RedirectResponse
+    {
+        $schedule->update($request->validated());
+
+        return to_route('schedule.index')->with('status-success', 'Schedule has been updated!');
     }
 
     public function activate(Schedule $schedule)
     {
-        Schedule::where('id', $schedule->id)->update(['active_in' => 'biodata']);
-        return back();
+        Schedule::whereNotNull('active_in')->update(['active_in' => null]);
+        Schedule::where('id', $schedule->id)->update(['active_in' => 'active']);
+
+        return back()->with('status-success', "$schedule->name is active!");
     }
 
     public function deactivate(Schedule $schedule)
     {
         Schedule::where('id', $schedule->id)->update(['active_in' => null]);
-        return back();
+
+        return back()->with('status-success', "$schedule->name is deactive!");
     }
 
     public function delete(Schedule $schedule)

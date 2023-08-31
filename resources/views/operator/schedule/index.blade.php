@@ -1,4 +1,4 @@
-<x-auth-layout title="Help">
+<x-auth-layout title="Schedule List">
     <x-work-space class="relative overflow-x-auto">
         <div class="flex justify-between item-center">
             <x-header title="Schedule" description="1">

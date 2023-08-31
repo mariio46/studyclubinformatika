@@ -19,15 +19,15 @@ class DatabaseSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
-        // Admin & Pengurus
         $this->call([
+            // Admin & Pengurus
             UserSeeder::class,
-        ]);
 
-        // Pendaftar
-        $this->call([
+            // Pendaftar
             // BiodataSeeder::class,
             // RegistrantActivitySeeder::class,
+
+            // Schedules
             ScheduleSeeder::class,
         ]);
     }

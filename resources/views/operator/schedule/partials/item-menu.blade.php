@@ -1,4 +1,11 @@
-<ul class="py-2 text-sm divide-y divide-gray-200 dark:divide-gray-700" aria-labelledby="{{ $item->id }}">
+<ul class="py-2 text-sm divide-y divide-gray-200 dark:divide-gray-700" aria-labelledby="{{ $item->identifier }}">
+    <li>
+        <a href="{{ route('schedule.edit', $item) }}"
+            class=" flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600">
+            <x-svg class="w-6 h-6 mr-1" svg="edit" strokeWidth="1.5" stroke="currentColor" />
+            Edit
+        </a>
+    </li>
     <li>
         @if ($item->active_in == null)
             <form action="{{ route('schedule.activate', $item) }}" method="post">

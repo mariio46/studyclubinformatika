@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Schedule extends Model
 {
@@ -24,11 +24,15 @@ class Schedule extends Model
         static::creating(function ($schedule) {
             $schedule->identifier = Str::slug(strtolower($schedule->name . '-' . mt_rand(11111, 99999)));
         });
+        static::updating(function ($schedule) {
+            $schedule->identifier = Str::slug(strtolower($schedule->name . '-' . mt_rand(11111, 99999)));
+        });
     }
 
     public function getFullDate()
     {
         \Carbon\Carbon::setlocale('id');
+
         return Carbon::parse($this->date_start)->translatedFormat('l') . ' - ' .
             Carbon::parse($this->date_end)->translatedFormat('l') . ' / ' .
             Carbon::parse($this->date_start)->translatedFormat('d') . ' - ' .

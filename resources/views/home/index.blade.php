@@ -1,4 +1,4 @@
-<x-guest-layout title="Home">
+<x-guest-layout>
     <div class="w-full bg-white dark:bg-gray-900">
 
         {{-- @include('home.partials.navigation') --}}

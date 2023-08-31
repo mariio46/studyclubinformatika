@@ -1,4 +1,4 @@
-<x-auth-layout>
+<x-auth-layout title="Dashboard">
     <div class="space-y-3 min-[1440px]:space-y-3">
         @hasanyrole(['operator', 'admin'])
             <x-work-space>

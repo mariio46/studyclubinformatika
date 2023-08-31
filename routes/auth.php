@@ -55,6 +55,8 @@ Route::middleware(['role:operator|admin'])->group(function () {
     Route::controller(ScheduleController::class)->group(function () {
         Route::get('schedule', 'index')->name('schedule.index');
         Route::post('schedule', 'store')->name('schedule.store');
+        Route::get('schedule/{schedule}', 'edit')->name('schedule.edit');
+        Route::put('schedule/{schedule}', 'update')->name('schedule.update');
 
         Route::put('schdule/activate/{schedule}', 'activate')->name('schedule.activate');
         Route::put('schdule/deactivate/{schedule}', 'deactivate')->name('schedule.deactivate');

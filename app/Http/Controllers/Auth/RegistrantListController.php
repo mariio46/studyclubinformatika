@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Storage;
 
 class RegistrantListController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware(['role:operator|admin']);

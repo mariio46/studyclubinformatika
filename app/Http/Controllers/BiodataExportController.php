@@ -27,7 +27,7 @@ class BiodataExportController extends Controller
 
             return view('pdf.registrant.preview-biodata', [
                 'user' => new RegistrantSingleResource($user),
-                'schedule' => Schedule::where('active_in', 'biodata')->select('id', 'name', 'location', 'date_start', 'date_end', 'time')->firstOrFail(),
+                'schedule' => Schedule::whereNotNull('active_in')->select('id', 'name', 'location', 'date_start', 'date_end', 'time')->firstOrFail(),
             ]);
         }
 

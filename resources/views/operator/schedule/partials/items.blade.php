@@ -4,7 +4,7 @@
             <x-slot:item>
                 <div class="min-w-0 flex-auto">
                     <p class="text-sm font-semibold leading-6 text-gray-900">
-                        {{ $item->name }}
+                        <a href="{{ route('schedule.edit', $item) }}" class="hover:underline">{{ $item->name }}</a>
                     </p>
                     <p class="flex items-center gap-x-1 mt-1 truncate text-xs leading-5 text-gray-500">
                         {{ $item->location }}
@@ -30,7 +30,7 @@
                     </p>
                 </div>
             </x-slot:item>
-            <x-stacked-list-menu :id="$item->id" :data="$item->username" placement="bottom-end" type="schedule"
+            <x-stacked-list-menu :id="$item->id" :data="$item->identifier" placement="bottom-end" type="schedule"
                 title="Schedule">
                 @include('operator.schedule.partials.item-menu')
             </x-stacked-list-menu>

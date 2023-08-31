@@ -22,7 +22,7 @@
     <div class="flex flex-wrap items-center gap-2 mt-3">
         @role('admin')
             <div class="">
-                <x-primary-link href="{{ route('registrant.index') }}" class="">{{ __('More info') }}</x-primary-link>
+                <x-primary-link href="{{ route('operator.index') }}" class="">{{ __('More info') }}</x-primary-link>
             </div>
         @endrole
 
