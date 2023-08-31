@@ -40,4 +40,4 @@ Route::middleware(['auth'])->group(function () {
     Route::get('help', RegistrantHelperController::class)->name('help.index');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

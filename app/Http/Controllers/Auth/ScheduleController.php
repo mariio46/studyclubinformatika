@@ -60,7 +60,6 @@ class ScheduleController extends Controller
     public function delete(Schedule $schedule)
     {
         $schedule->delete();
-
         return back();
     }
 }

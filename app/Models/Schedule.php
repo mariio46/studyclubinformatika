@@ -22,10 +22,10 @@ class Schedule extends Model
     {
         parent::boot();
         static::creating(function ($schedule) {
-            $schedule->identifier = Str::slug(strtolower($schedule->name.'-'.mt_rand(11111, 99999)));
+            $schedule->identifier = Str::slug(strtolower($schedule->name . '-' . mt_rand(11111, 99999)));
         });
         static::updating(function ($schedule) {
-            $schedule->identifier = Str::slug(strtolower($schedule->name.'-'.mt_rand(11111, 99999)));
+            $schedule->identifier = Str::slug(strtolower($schedule->name . '-' . mt_rand(11111, 99999)));
         });
     }
 
@@ -33,9 +33,9 @@ class Schedule extends Model
     {
         \Carbon\Carbon::setlocale('id');
 
-        return Carbon::parse($this->date_start)->translatedFormat('l').' - '.
-            Carbon::parse($this->date_end)->translatedFormat('l').' / '.
-            Carbon::parse($this->date_start)->translatedFormat('d').' - '.
+        return Carbon::parse($this->date_start)->translatedFormat('l') . ' - ' .
+            Carbon::parse($this->date_end)->translatedFormat('l') . ' / ' .
+            Carbon::parse($this->date_start)->translatedFormat('d') . ' - ' .
             Carbon::parse($this->date_end)->translatedFormat('d F Y');
     }
 }

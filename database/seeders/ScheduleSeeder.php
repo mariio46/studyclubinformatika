@@ -16,7 +16,7 @@ class ScheduleSeeder extends Seeder
         Schedule::create([
             'name' => $name = 'Pengakderan SCI 2024',
             'location' => 'Lowita, Suppa, Pinrang',
-            'identifier' => Str::slug(strtolower($name.'-'.mt_rand(11111, 99999))),
+            'identifier' => Str::slug(strtolower($name . '-' . mt_rand(11111, 99999))),
             'time' => '16:00',
             'date_start' => '2024-01-21',
             'date_end' => '2024-01-24',
@@ -26,7 +26,7 @@ class ScheduleSeeder extends Seeder
         Schedule::create([
             'name' => $name = 'Family Gathering 2024',
             'location' => 'Lowita, Suppa, Pinrang',
-            'identifier' => Str::slug(strtolower($name.'-'.mt_rand(11111, 99999))),
+            'identifier' => Str::slug(strtolower($name . '-' . mt_rand(11111, 99999))),
             'time' => '08:00',
             'date_start' => '2024-03-21',
             'date_end' => '2024-03-24',
