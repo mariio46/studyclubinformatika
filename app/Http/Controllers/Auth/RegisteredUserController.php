@@ -36,9 +36,11 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
         $user->biodata()->create([
             'user_id' => $user->id,
         ]);
+
         $user->registrantActivity()->create([
             'user_id' => $user->id,
             'account_registration' => 1,
@@ -46,7 +48,9 @@ class RegisteredUserController extends Controller
             'create_biodata' => 1,
             'create_biodata_time' => now(),
         ]);
+
         event(new Registered($user));
+
         Auth::login($user);
 
         return redirect(RouteServiceProvider::DASHBOARD);

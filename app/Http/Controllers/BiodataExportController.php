@@ -13,21 +13,32 @@ class BiodataExportController extends Controller
 {
     public $open;
 
+    public $schedule;
+
     public function __construct()
     {
         $this->open = RegistrationStatus::getRegistrationStatus();
+        $this->schedule = Schedule::whereNotNull('active_in')
+            ->select('id', 'name', 'location', 'date_start', 'date_end', 'time')
+            ->firstOr(callback: fn () => abort(505));
+    }
+
+    protected function getRegistrantBiodata($identifier)
+    {
+        return User::query()->withRegistrantDetails($identifier)->firstOr(callback: fn () => abort(504));
+    }
+
+    protected function getRegistrantTimeline()
+    {
+        return auth()->user()->registrantActivity->download_biodata;
     }
 
     public function preview($identifier)
     {
         if ($this->open) {
-            $user = User::query()
-                ->withRegistrantDetails($identifier)
-                ->firstOr(callback: fn () => abort(504));
-
             return view('pdf.registrant.preview-biodata', [
-                'user' => new RegistrantSingleResource($user),
-                'schedule' => Schedule::whereNotNull('active_in')->select('id', 'name', 'location', 'date_start', 'date_end', 'time')->firstOrFail(),
+                'user' => new RegistrantSingleResource($this->getRegistrantBiodata($identifier)),
+                'schedule' => $this->schedule,
             ]);
         }
 
@@ -37,18 +48,16 @@ class BiodataExportController extends Controller
     public function manual($identifier)
     {
         if ($this->open) {
-            $user = User::query()
-                ->withRegistrantDetails($identifier)
-                ->firstOr(callback: fn () => abort(504));
-            $timeline = auth()->user()->registrantActivity;
-            if (!$timeline->download_biodata) {
-                RegistrantActivity::where('user_id', $user->id)->update([
-                    'download_biodata' => 1,
-                    'download_biodata_time' => now(),
-                ]);
+            $user = $this->getRegistrantBiodata($identifier);
+
+            if (! $this->getRegistrantTimeline()) {
+                RegistrantActivity::updateDownloadBiodata($user->id);
             }
 
-            return view('pdf.registrant.manual-biodata', compact('user'));
+            return view('pdf.registrant.manual-biodata', [
+                'user' => new RegistrantSingleResource($user),
+                'schedule' => $this->schedule,
+            ]);
         }
 
         return back()->with('status-failed', 'Sorry cannot download or preview biodata, registration is close now');
@@ -57,20 +66,18 @@ class BiodataExportController extends Controller
     public function auto($identifier)
     {
         if ($this->open) {
-            $user = User::query()
-                ->withRegistrantDetails($identifier)
-                ->firstOr(callback: fn () => abort(504));
-            $timeline = auth()->user()->registrantActivity;
-            if (!$timeline->download_biodata) {
-                RegistrantActivity::where('user_id', $user->id)->update([
-                    'download_biodata' => 1,
-                    'download_biodata_time' => now(),
-                ]);
-            }
-            // $sra3 = [0, 0, 907.09, 1375.59];
-            $pdf = Pdf::loadView('pdf.registrant.automatic-biodata', ['user' => $user])->setPaper('legal', 'potrait');
+            $user = $this->getRegistrantBiodata($identifier);
 
-            return $pdf->download('biodata-' . $user->username . '-' . mt_rand(9999, 99999) . '.pdf');
+            if (! $this->getRegistrantTimeline()) {
+                RegistrantActivity::updateDownloadBiodata($user->id);
+            }
+
+            $pdf = Pdf::loadView('pdf.registrant.automatic-biodata', [
+                'user' => new RegistrantSingleResource($user),
+                'schedule' => $this->schedule,
+            ])->setPaper('legal', 'potrait');
+
+            return $pdf->download('biodata-'.$user->username.'-'.mt_rand(9999, 99999).'.pdf');
         }
 
         return back()->with('status-failed', 'Sorry cannot download or preview biodata, registration is close now');

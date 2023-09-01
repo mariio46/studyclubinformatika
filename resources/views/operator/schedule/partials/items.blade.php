@@ -3,14 +3,18 @@
         <x-stacked-list-item>
             <x-slot:item>
                 <div class="min-w-0 flex-auto">
-                    <p class="text-sm font-semibold leading-6 text-gray-900">
+                    <p class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">
                         <a href="{{ route('schedule.edit', $item) }}" class="hover:underline">{{ $item->name }}</a>
                     </p>
-                    <p class="flex items-center gap-x-1 mt-1 truncate text-xs leading-5 text-gray-500">
+                    <p class="flex items-center gap-x-1 mt-1 truncate text-xs text-gray-500 dark:text-gray-400">
                         {{ $item->location }}
                         •
                         {{ \Carbon\Carbon::parse($item->time)->format('H.i') . ' WITA' }}
-                        •
+                    </p>
+                    <p class="mt-1 truncate text-xs text-gray-500 dark:text-gray-400">
+                        {{ $item->getFullDate() }}
+                    </p>
+                    <p class="mt-1 truncate text-xs font-medium">
                         @if ($item->active_in == null)
                             <span class="text-red-600 flex items-center">
                                 Not Active
@@ -24,9 +28,6 @@
                                     stroke="currentColor" />
                             </span>
                         @endif
-                    </p>
-                    <p class="mt-1 truncate text-xs leading-5 text-gray-500">
-                        {{ $item->getFullDate() }}
                     </p>
                 </div>
             </x-slot:item>

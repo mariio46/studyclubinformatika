@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\View\View;
 
 class RegistrantsTableExportController extends Controller
 {
@@ -13,38 +14,24 @@ class RegistrantsTableExportController extends Controller
         $this->middleware(['role:operator|admin']);
     }
 
-    public function preview()
+    public function preview(): View
     {
         return view('pdf.operator.table.pdf-format.preview', [
-            'registrants' => User::query()
-                ->where('has_verified', 1)
-                ->select('id', 'name', 'username', 'picture', 'email', 'created_at', 'has_verified')
-                ->doesntHave('roles')
-                ->with('biodata:id,user_id,fullname,sex,whatsapp,fatherWhatsapp,motherWhatsapp,goals')
-                ->get(),
+            'registrants' => User::getVerifiiedRegistrants(),
         ]);
     }
 
-    public function tableManual()
+    public function tableManual(): View
     {
         return view('pdf.operator.table.pdf-format.manual', [
-            'registrants' => User::query()
-                ->where('has_verified', 1)
-                ->select('id', 'name', 'username', 'picture', 'email', 'created_at', 'has_verified')
-                ->doesntHave('roles')
-                ->with('biodata:id,user_id,fullname,sex,whatsapp,fatherWhatsapp,motherWhatsapp,goals')
-                ->get(),
+            'registrants' => User::getVerifiiedRegistrants(),
         ]);
     }
 
     public function tableAuto()
     {
-        $registrants = User::query()
-            ->where('has_verified', 1)
-            ->select('id', 'name', 'username', 'picture', 'email', 'created_at', 'has_verified')
-            ->doesntHave('roles')
-            ->with('biodata:id,user_id,fullname,sex,whatsapp,fatherWhatsapp,motherWhatsapp,goals')
-            ->get();
+        $registrants = User::getVerifiiedRegistrants();
+
         $pdf = Pdf::loadView('pdf.operator.table.pdf-format.automatic', compact('registrants'))->setPaper('legal', 'landscape');
 
         return $pdf->download('Daftar-Pendaftar-'.now()->format('Y').'-'.mt_rand(9999, 99999).'.pdf');

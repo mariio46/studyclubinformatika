@@ -10,7 +10,7 @@ use App\Models\RegistrantActivity;
 use App\Models\RegistrationStatus;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class RegistrantBiodataController extends Controller
 {
@@ -45,6 +45,14 @@ class RegistrantBiodataController extends Controller
         if ($request->userId == 1) {
             return back()->with('status-failed', 'Mario cant be edited, nice try buddy!');
         }
+
+        if ($request->name != auth()->user()->name) {
+            $result = $this->getCode($request->name);
+            User::where('id', auth()->user()->id)->update([
+                'username' => $result,
+            ]);
+        }
+
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
@@ -58,15 +66,11 @@ class RegistrantBiodataController extends Controller
     public function biodataUpdate(RegistrantBiodataUpdateRequest $request): RedirectResponse
     {
         if ($this->open) {
-            $user = auth()->user()->registrantActivity;
-            if (! $user->update_biodata) {
-                RegistrantActivity::where('user_id', auth()->user()->id)->update([
-                    'update_biodata' => 1,
-                    'update_biodata_time' => now(),
-                ]);
+            if (! auth()->user()->registrantActivity->update_biodata) {
+                RegistrantActivity::updateBiodata(auth()->user()->id);
             }
-            $validated = $request->validated();
-            Biodata::where('user_id', auth()->user()->id)->update($validated);
+
+            Biodata::where('user_id', auth()->user()->id)->update($request->validated());
 
             return back()->with('status-success', 'Biodata Updated');
         }
@@ -74,23 +78,19 @@ class RegistrantBiodataController extends Controller
         return back()->with('status-failed', 'Sorry, registrtion is closed. Comeback anytime!');
     }
 
-    public function store(Request $request)
+    protected function getCode($request)
     {
-        if ($this->open) {
-            Biodata::create([
-                'user_id' => $request->userId,
-            ]);
-            RegistrantActivity::create([
-                'user_id' => $request->userId,
-                'account_registration' => 1,
-                'account_registration_time' => now(),
-                'create_biodata' => 1,
-                'create_biodata_time' => now(),
-            ]);
+        // Take registration code from old username
+        preg_match_all('!\d+!', auth()->user()->username, $matches);
+        $code = implode(' ', $matches[0]);
 
-            return back()->with('status-success', 'Biodata has been created');
-        }
+        // Take first name from new input name
+        $name = Str::of($request)->explode(' ')->get(0);
 
-        return back()->with('status-failed', 'Sorry, registrtion is closed. Comeback anytime!');
+        // Change to lowercase and merge
+        $result = strtolower($name).$code;
+
+        // Result
+        return (string) $result;
     }
 }

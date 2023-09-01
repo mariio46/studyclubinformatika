@@ -25,9 +25,9 @@ class ScheduleController extends Controller
 
     public function store(CreateScheduleRequest $request): RedirectResponse
     {
-        Schedule::create($request->validated());
+        $schedule = Schedule::create($request->validated());
 
-        return back()->with('status-success', 'Schedule has been added!');
+        return back()->with('status-success', $schedule->name.' has been added!');
     }
 
     public function edit(Schedule $schedule): View
@@ -42,7 +42,7 @@ class ScheduleController extends Controller
         return to_route('schedule.index')->with('status-success', 'Schedule has been updated!');
     }
 
-    public function activate(Schedule $schedule)
+    public function activate(Schedule $schedule): RedirectResponse
     {
         Schedule::whereNotNull('active_in')->update(['active_in' => null]);
         Schedule::where('id', $schedule->id)->update(['active_in' => 'active']);
@@ -50,7 +50,7 @@ class ScheduleController extends Controller
         return back()->with('status-success', "$schedule->name is active!");
     }
 
-    public function deactivate(Schedule $schedule)
+    public function deactivate(Schedule $schedule): RedirectResponse
     {
         Schedule::where('id', $schedule->id)->update(['active_in' => null]);
 
@@ -60,6 +60,7 @@ class ScheduleController extends Controller
     public function delete(Schedule $schedule)
     {
         $schedule->delete();
-        return back();
+
+        return back()->with('status-success', "$schedule->name has been deleted!");
     }
 }

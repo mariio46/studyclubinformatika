@@ -21,7 +21,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::controller(RegistrantBiodataController::class)->group(function () {
         Route::get('biodata', 'index')->name('biodata.index');
-        Route::post('biodata', 'store')->name('biodata.store');
         Route::put('biodata', 'biodataUpdate')->name('biodata.update');
         Route::put('biodata/profile', 'profileUpdate')->name('biodata.profile.update');
         Route::put('biodata/picture', 'pictureUpdate')->name('biodata.picture.update');
@@ -40,4 +39,4 @@ Route::middleware(['auth'])->group(function () {
     Route::get('help', RegistrantHelperController::class)->name('help.index');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

@@ -9,12 +9,20 @@
         @csrf
         @method('put')
 
-        <div>
-            <x-input-label for="current_password" :value="__('Current Password')" />
-            <x-text-input id="current_password" name="current_password" type="password" class="mt-1 block w-full"
-                autocomplete="current-password" />
-            <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
-        </div>
+        @if (auth()->user()->password)
+            <div>
+                <x-input-label for="current_password" :value="__('Current Password')" />
+                <x-text-input id="current_password" name="current_password" type="password" class="mt-1 block w-full"
+                    autocomplete="current-password" />
+                <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
+            </div>
+        @else
+            <div>
+                <span class="text-red-500 animate-pulse">
+                    Warning, You dont have password!
+                </span>
+            </div>
+        @endif
 
         <div>
             <x-input-label for="password" :value="__('New Password')" />

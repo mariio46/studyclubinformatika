@@ -15,4 +15,14 @@ class RegistrationStatus extends Model
 
         return $data == 1 ? true : false;
     }
+
+    public static function openRegistration()
+    {
+        return RegistrationStatus::where('id', 1)->update(['status' => 1]);
+    }
+
+    public static function closeRegistration()
+    {
+        return RegistrationStatus::where('id', 1)->update(['status' => 0]);
+    }
 }

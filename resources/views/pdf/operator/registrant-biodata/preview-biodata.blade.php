@@ -11,8 +11,9 @@
 
 <body>
     @php
+        use Carbon\Carbon;
         $code = mt_rand(9999, 99999);
-        \Carbon\Carbon::setlocale('id');
+        Carbon::setlocale('id');
     @endphp
     <div class="main">
         <div class="container">
@@ -341,21 +342,21 @@
                                 <th class="title">Hari / Tanggal</th>
                                 <td class="colon">:</td>
                                 <td class="body ">
-                                    Jum'at - Minggu / 19 - 21 Mei 2023
+                                    {{ $schedule->getFullDate() }}
                                 </td>
                             </tr>
                             <tr>
                                 <th class="title">Pukul</th>
                                 <td class="colon">:</td>
                                 <td class="body ">
-                                    16.00 WITA
+                                    {{ Carbon::parse($schedule->time)->translatedFormat('H:i') . ' WITA' }}
                                 </td>
                             </tr>
                             <tr>
                                 <th class="title">Tempat</th>
                                 <td class="colon">:</td>
                                 <td class="body ">
-                                    Lowita (tempat bisa saja berubah)
+                                    {{ $schedule->location }}
                                 </td>
                             </tr>
                         </table>

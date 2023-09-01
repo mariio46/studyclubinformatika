@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\RegistrantResource;
 use App\Http\Resources\RegistrantSingleResource;
-use App\Models\Biodata;
 use App\Models\RegistrationStatus;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -32,7 +31,6 @@ class RegistrantListController extends Controller
                 ->select('id', 'name', 'username', 'picture', 'email', 'created_at', 'has_verified')
                 ->doesntHave('roles')
                 ->withCount('biodata')
-                // ->take(4)
                 ->get();
         }
         $data = RegistrationStatus::query()->where('id', 1)->select('status')->first()->status;
@@ -54,15 +52,6 @@ class RegistrantListController extends Controller
         ]);
     }
 
-    public function store(Request $request)
-    {
-        Biodata::create([
-            'user_id' => $request->userId,
-        ]);
-
-        return back()->with('status-success', 'Biodata has been created');
-    }
-
     public function delete(User $user)
     {
         if ($user->picture) {
@@ -70,7 +59,7 @@ class RegistrantListController extends Controller
         }
         User::destroy($user->id);
 
-        return back()->with('status-success', $user->getNickname() . ' has been deleted!');
+        return back()->with('status-success', $user->getNickname().' has been deleted!');
     }
 
     public function deleteUnverified()
