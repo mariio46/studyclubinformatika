@@ -53,26 +53,28 @@
                     </x-primary-button>
                 </div>
             </div>
-            {{-- <div class="border border-gray-200 w-full mt-4"></div>
-            <div class="block mt-4">
-                <x-primary-button class="w-full flex justify-center gap-1 py-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4" fill="none">
-                        <path
-                            d="M24 12.276c0-.816-.067-1.636-.211-2.438H12.242v4.62h6.612a5.549 5.549 0 0 1-2.447 3.647v2.998h3.945C22.669 19.013 24 15.927 24 12.276Z"
-                            fill="#4285F4" />
-                        <path
-                            d="M12.241 24c3.302 0 6.086-1.063 8.115-2.897l-3.945-2.998c-1.097.732-2.514 1.146-4.165 1.146-3.194 0-5.902-2.112-6.873-4.951H1.302v3.09C3.38 21.444 7.612 24 12.242 24Z"
-                            fill="#34A853" />
-                        <path
-                            d="M5.369 14.3a7.053 7.053 0 0 1 0-4.595v-3.09H1.302a11.798 11.798 0 0 0 0 10.776L5.369 14.3Z"
-                            fill="#FBBC04" />
-                        <path
-                            d="M12.241 4.75a6.727 6.727 0 0 1 4.696 1.798l3.495-3.425A11.898 11.898 0 0 0 12.243 0C7.611 0 3.38 2.558 1.301 6.615l4.067 3.09C6.336 6.862 9.048 4.75 12.24 4.75Z"
-                            fill="#EA4335" />
-                    </svg>
-                    {{ __('Login') }}
-                </x-primary-button>
-            </div> --}}
+            <div
+                class="my-2 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 dark:before:border-neutral-600 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300 dark:after:border-neutral-600 ">
+                <p class="mx-4 mb-0 text-sm md:text-base text-center font-medium dark:text-gray-300">
+                    or
+                </p>
+            </div>
+            <div class="flex items-center gap-x-2 justify-center">
+                <x-primary-link :href="route('socialite.redirect', 'github')" class="w-full justify-center">
+                    <x-svg svg="github" class="w-4 h-4 mr-2 text-white dark:text-black" fill="currentColor"
+                        viewBox="0 0 20 20" />
+                    Github
+                </x-primary-link>
+                <x-primary-link :href="route('socialite.redirect', 'google')" class="w-full justify-center">
+                    <x-svg svg="google" class="w-4 h-4 mr-2 text-white dark:text-black" fill="currentColor"
+                        viewBox="0 0 18 19" />
+                    Google
+                </x-primary-link>
+                <x-primary-link :href="route('socialite.redirect', 'twitter')" class="w-full justify-center">
+                    <x-svg svg="twitter" class="w-4 h-4 mr-2 text-white dark:text-black" viewBox="0 0 20 20" />
+                    Twitter
+                </x-primary-link>
+            </div>
     </div>
     </form>
     </div>

@@ -41,7 +41,7 @@ class BiodataExportController extends Controller
                 ->withRegistrantDetails($identifier)
                 ->firstOr(callback: fn () => abort(504));
             $timeline = auth()->user()->registrantActivity;
-            if (!$timeline->download_biodata) {
+            if (! $timeline->download_biodata) {
                 RegistrantActivity::where('user_id', $user->id)->update([
                     'download_biodata' => 1,
                     'download_biodata_time' => now(),
@@ -61,7 +61,7 @@ class BiodataExportController extends Controller
                 ->withRegistrantDetails($identifier)
                 ->firstOr(callback: fn () => abort(504));
             $timeline = auth()->user()->registrantActivity;
-            if (!$timeline->download_biodata) {
+            if (! $timeline->download_biodata) {
                 RegistrantActivity::where('user_id', $user->id)->update([
                     'download_biodata' => 1,
                     'download_biodata_time' => now(),
@@ -70,7 +70,7 @@ class BiodataExportController extends Controller
             // $sra3 = [0, 0, 907.09, 1375.59];
             $pdf = Pdf::loadView('pdf.registrant.automatic-biodata', ['user' => $user])->setPaper('legal', 'potrait');
 
-            return $pdf->download('biodata-' . $user->username . '-' . mt_rand(9999, 99999) . '.pdf');
+            return $pdf->download('biodata-'.$user->username.'-'.mt_rand(9999, 99999).'.pdf');
         }
 
         return back()->with('status-failed', 'Sorry cannot download or preview biodata, registration is close now');

@@ -26,6 +26,9 @@ class User extends Authenticatable
         'picture',
         'email',
         'password',
+        // 'provider_id',
+        // 'provider_token',
+        // 'provider_refresh_token',
     ];
 
     protected $hidden = [
@@ -51,6 +54,11 @@ class User extends Authenticatable
     public function registrantActivity()
     {
         return $this->hasOne(RegistrantActivity::class);
+    }
+
+    public function userSocials()
+    {
+        return $this->hasMany(UserSocial::class);
     }
 
     public function getNickname()

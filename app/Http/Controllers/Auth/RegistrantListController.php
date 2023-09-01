@@ -70,7 +70,7 @@ class RegistrantListController extends Controller
         }
         User::destroy($user->id);
 
-        return back()->with('status-success', $user->getNickname() . ' has been deleted!');
+        return back()->with('status-success', $user->getNickname().' has been deleted!');
     }
 
     public function deleteUnverified()

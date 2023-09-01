@@ -11,6 +11,7 @@ use App\Models\RegistrationStatus;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class RegistrantBiodataController extends Controller
 {
@@ -45,6 +46,14 @@ class RegistrantBiodataController extends Controller
         if ($request->userId == 1) {
             return back()->with('status-failed', 'Mario cant be edited, nice try buddy!');
         }
+
+        if ($request->name != auth()->user()->name) {
+            $result = $this->getCode($request->name);
+            User::where('id', auth()->user()->id)->update([
+                'username' => $result,
+            ]);
+        }
+
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
@@ -92,5 +101,21 @@ class RegistrantBiodataController extends Controller
         }
 
         return back()->with('status-failed', 'Sorry, registrtion is closed. Comeback anytime!');
+    }
+
+    protected function getCode($request)
+    {
+        // Take registration code from old username
+        preg_match_all('!\d+!', auth()->user()->username, $matches);
+        $code = implode(' ', $matches[0]);
+
+        // Take first name from new input name
+        $name = Str::of($request)->explode(' ')->get(0);
+
+        // Change to lowercase and merge
+        $result = strtolower($name).$code;
+
+        // Result
+        return (string) $result;
     }
 }
