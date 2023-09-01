@@ -17,6 +17,7 @@ use App\Http\Controllers\Auth\RegistrationStatusController;
 use App\Http\Controllers\Auth\ScheduleController;
 use App\Http\Controllers\Auth\VerifiedRegistrantController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\SocialiteController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['role:operator|admin'])->group(function () {
@@ -78,6 +79,13 @@ Route::middleware(['role:admin'])->group(function () {
 });
 
 Route::middleware('guest')->group(function () {
+
+    Route::controller(SocialiteController::class)->group(function () {
+        Route::get('/login/{provider}/redirect', 'redirect')->name('socialite.redirect');
+        Route::get('/login/{provider}/callback', 'callback')->name('socialite.callback');
+    });
+
+
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
 

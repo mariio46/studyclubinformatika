@@ -26,6 +26,9 @@ class User extends Authenticatable
         'picture',
         'email',
         'password',
+        // 'provider_id',
+        // 'provider_token',
+        // 'provider_refresh_token',
     ];
 
     protected $hidden = [
@@ -99,7 +102,7 @@ class User extends Authenticatable
         $user = User::create([
             'has_verified' => 1,
             'name' => $string['name'],
-            'username' => strtolower(Str::of($string['name'])->explode(' ')->get(0)).strtolower(mt_rand(11111, 99999)),
+            'username' => strtolower(Str::of($string['name'])->explode(' ')->get(0)) . strtolower(mt_rand(11111, 99999)),
             'email' => $string['email'],
             'password' => Hash::make($string['password']),
         ]);
@@ -146,7 +149,12 @@ class User extends Authenticatable
             $file = $string['picture'];
             $orginalExtension = $file->getClientOriginalExtension();
         }
-        $picture = $file->storeAs('image/profile-picture', 'photo-by'.'-'.Auth::user()->username.'-'.mt_rand(0, 99999).'.'.$orginalExtension);
+        $picture = $file->storeAs('image/profile-picture', 'photo-by' . '-' . Auth::user()->username . '-' . mt_rand(0, 99999) . '.' . $orginalExtension);
         User::where('id', Auth::user()->id)->update(['picture' => $picture]);
+    }
+
+    public function userSocials()
+    {
+        return $this->hasMany(UserSocial::class);
     }
 }
