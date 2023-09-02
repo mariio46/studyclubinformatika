@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             // Admin & Pengurus
-            UserSeeder::class,
+            // UserSeeder::class,
 
             // Pendaftar
             // BiodataSeeder::class,
