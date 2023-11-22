@@ -1,4 +1,4 @@
-<x-auth-layout title="Activity Progress">
+<x-auth-layout title="Timeline">
     <x-work-space>
         @hasanyrole(['operator', 'admin'])
             <div id="operator-accordion" data-accordion="collapse" data-active-classes="dark:bg-transparent text-gray-900 dark:text-white">
