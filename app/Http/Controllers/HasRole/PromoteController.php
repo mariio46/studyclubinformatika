@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 
-class PromoteRegistrantController extends Controller
+class PromoteController extends Controller
 {
     public function __invoke(User $user): RedirectResponse
     {

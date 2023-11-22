@@ -4,13 +4,11 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateScheduleRequest extends FormRequest
+class ScheduleRequest extends FormRequest
 {
-    protected $errorBag = 'scheduleDelition';
-
     public function authorize(): bool
     {
-        return true;
+        return $this->user()->hasAnyRole(['admin', 'operator']) ? true : false;
     }
 
     public function rules(): array

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 
-class VerifiedRegistrantController extends Controller
+class VerifyController extends Controller
 {
     public function verify(User $user): RedirectResponse
     {

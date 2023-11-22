@@ -1,13 +1,13 @@
 <?php
 
 use App\Http\Controllers\HasRole\OperatorListController;
-use App\Http\Controllers\HasRole\PromoteRegistrantController;
+use App\Http\Controllers\HasRole\PromoteController;
 use App\Http\Controllers\HasRole\RegistrantBiodataExportController;
 use App\Http\Controllers\HasRole\RegistrantListController;
 use App\Http\Controllers\HasRole\RegistrantsTableExportController;
 use App\Http\Controllers\HasRole\RegistrationStatusController;
 use App\Http\Controllers\HasRole\ScheduleController;
-use App\Http\Controllers\HasRole\VerifiedRegistrantController;
+use App\Http\Controllers\HasRole\VerifyController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['role:operator|admin'])->group(function () {
@@ -16,7 +16,7 @@ Route::middleware(['role:operator|admin'])->group(function () {
         Route::put('status/close', 'close')->name('status.close');
     });
 
-    Route::controller(VerifiedRegistrantController::class)->group(function () {
+    Route::controller(VerifyController::class)->group(function () {
         Route::put('verify/{user}', 'verify')->name('registrant.verify');
         Route::put('unverify/{user}', 'unverify')->name('registrant.unverify');
     });
@@ -56,7 +56,7 @@ Route::middleware(['role:operator|admin'])->group(function () {
 });
 
 Route::middleware(['role:admin'])->group(function () {
-    Route::put('promote/{user}', PromoteRegistrantController::class)->name('registrant.promote');
+    Route::put('promote/{user}', PromoteController::class)->name('registrant.promote');
 
     Route::controller(OperatorListController::class)->group(function () {
         Route::get('operator', 'index')->name('operator.index');

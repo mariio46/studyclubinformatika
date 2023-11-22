@@ -10,16 +10,14 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-
-        // Status Pendaftaran (Buka / Tutup)
         $this->call([
             // Admin & Pengurus
             RegistrationSeeder::class,
             UserSeeder::class,
 
             // Pendaftar
-            // BiodataSeeder::class,
-            // TimelineSeeder::class,
+            BiodataSeeder::class,
+            TimelineSeeder::class,
 
             // Schedules
             ScheduleSeeder::class,

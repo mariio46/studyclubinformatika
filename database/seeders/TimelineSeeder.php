@@ -11,9 +11,9 @@ class TimelineSeeder extends Seeder
     public function run(): void
     {
         $num = User::whereHas('roles')->count() + 1;
-        for ($i = $num; $i <= 51; $i++) {
+        for ($i = 1; $i <= 51; $i++) {
             Timeline::create([
-                'user_id' => $i,
+                'user_id' => $num,
                 'account_registration' => 1,
                 'account_registration_time' => now(),
                 'create_biodata' => 1,
@@ -23,6 +23,7 @@ class TimelineSeeder extends Seeder
                 'download_biodata' => 1,
                 'download_biodata_time' => now(),
             ]);
+            $num++;
         }
     }
 }

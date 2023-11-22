@@ -9,7 +9,6 @@ class RegistrationSeeder extends Seeder
 {
     public function run(): void
     {
-        // Status Pendaftaran (Buka / Tutup)
         Registration::create(['status' => 0]);
     }
 }

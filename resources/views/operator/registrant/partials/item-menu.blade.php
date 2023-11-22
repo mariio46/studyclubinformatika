@@ -54,17 +54,19 @@
             Show
         </a>
     </li>
-    <li>
-        <form action="{{ route('registrant.delete', $item) }}" method="post">
-            @csrf
-            @method('delete')
-            <button class="w-full px-4 py-3 text-left hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600" type="submit"
-                @if ($item->biodata_count == 1 || $item->has_verified == 1) onclick="return confirm('Are you sure want to delete {{ $item->getNickname() }}?')" @endif>
-                <span class="flex items-center font-medium text-red-600">
-                    <x-svg class="mr-1 h-6 w-6" svg="delete" strokeWidth="1.5" stroke="currentColor" />
-                    Delete
-                </span>
-            </button>
-        </form>
-    </li>
+    @if (!$open)
+        <li>
+            <form action="{{ route('registrant.delete', $item) }}" method="post">
+                @csrf
+                @method('delete')
+                <button class="w-full px-4 py-3 text-left hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600" type="submit"
+                    @if ($item->biodata_count == 1 || $item->has_verified == 1) onclick="return confirm('Are you sure want to delete {{ $item->getNickname() }}?')" @endif>
+                    <span class="flex items-center font-medium text-red-600">
+                        <x-svg class="mr-1 h-6 w-6" svg="delete" strokeWidth="1.5" stroke="currentColor" />
+                        Delete
+                    </span>
+                </button>
+            </form>
+        </li>
+    @endif
 </ul>

@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\RegistrantHelperResource;
 use App\Models\User;
+use Illuminate\View\View;
 
 class HelperController extends Controller
 {
-    public function __invoke()
+    public function __invoke(): View
     {
         $operators = User::query()
             ->select('id', 'name', 'picture', 'whatsapp')
